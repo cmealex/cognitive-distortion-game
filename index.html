@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Distortion Matcher</title>
+    <link rel="stylesheet" href="therapy-game-css.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen">
+            <h1>Cognitive Distortion Matcher</h1>
+            <div class="form-container">
+                <h2>Login</h2>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Enter password">
+                </div>
+                <button id="login-btn">Login</button>
+                <p id="login-error" class="error-message"></p>
+            </div>
+        </div>
+
+        <!-- Admin Screen -->
+        <div id="admin-screen" class="screen hidden">
+            <h1>Admin Panel</h1>
+            <div class="admin-container">
+                <h2>Create User</h2>
+                <div class="form-group">
+                    <label for="new-username">Username:</label>
+                    <input type="text" id="new-username" placeholder="Enter new username">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Password:</label>
+                    <input type="password" id="new-password" placeholder="Enter new password">
+                </div>
+                <button id="create-user-btn">Create User</button>
+                <div id="user-list">
+                    <h3>User Credentials</h3>
+                    <ul id="credentials-list"></ul>
+                </div>
+                <button id="admin-logout-btn" class="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <!-- Profile Setup Screen -->
+        <div id="profile-screen" class="screen hidden">
+            <h1>Setup Your Profile</h1>
+            <div class="profile-container">
+                <div class="form-group">
+                    <label for="nickname">Nickname:</label>
+                    <input type="text" id="nickname" placeholder="Choose a nickname">
+                </div>
+                <div class="avatar-selection">
+                    <h3>Select an Avatar</h3>
+                    <div class="avatar-grid">
+                        <img src="/api/placeholder/80/80" alt="Avatar 1" class="avatar" data-avatar="1">
+                        <img src="/api/placeholder/80/80" alt="Avatar 2" class="avatar" data-avatar="2">
+                        <img src="/api/placeholder/80/80" alt="Avatar 3" class="avatar" data-avatar="3">
+                        <img src="/api/placeholder/80/80" alt="Avatar 4" class="avatar" data-avatar="4">
+                        <img src="/api/placeholder/80/80" alt="Avatar 5" class="avatar" data-avatar="5">
+                        <img src="/api/placeholder/80/80" alt="Avatar 6" class="avatar" data-avatar="6">
+                    </div>
+                </div>
+                <button id="save-profile-btn">Save Profile</button>
+            </div>
+        </div>
+
+        <!-- Level Selection Screen -->
+        <div id="level-screen" class="screen hidden">
+            <h1>Select a Level</h1>
+            <div class="user-profile">
+                <img id="profile-avatar" src="/api/placeholder/50/50" alt="Your avatar">
+                <span id="profile-nickname">Player</span>
+            </div>
+            <div class="level-container">
+                <div class="level-grid" id="level-grid"></div>
+            </div>
+            <div class="leaderboard">
+                <h2>Leaderboard</h2>
+                <table id="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Player</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body"></tbody>
+                </table>
+            </div>
+            <button id="logout-btn" class="logout-btn">Logout</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <div class="game-header">
+                <div class="level-info">
+                    <h2>Level <span id="current-level">1</span></h2>
+                </div>
+                <div class="timer">
+                    <span id="time-left">60</span> seconds left
+                </div>
+                <div class="score">
+                    <span id="score">0</span> / <span id="total-pairs">3</span> matched
+                </div>
+            </div>
+            <div class="game-container">
+                <div class="situation-panel">
+                    <h3>Situations</h3>
+                    <div id="situations-container" class="items-container"></div>
+                </div>
+                <div class="distortion-panel">
+                    <h3>Cognitive Distortions</h3>
+                    <div id="distortions-container" class="items-container"></div>
+                </div>
+            </div>
+            <div class="game-footer">
+                <button id="back-to-levels" class="secondary-btn">Back to Levels</button>
+            </div>
+        </div>
+
+        <!-- Level Complete Screen -->
+        <div id="level-complete" class="screen hidden">
+            <h1>Level Complete!</h1>
+            <div class="results-container">
+                <p>You completed level <span id="completed-level">1</span>!</p>
+                <p>Time used: <span id="time-used">0</span> seconds</p>
+                <p>Score: <span id="final-score">0</span>/<span id="max-score">3</span></p>
+                <div id="level-unlocked" class="hidden">
+                    <p>You've unlocked level <span id="unlocked-level">2</span>!</p>
+                </div>
+            </div>
+            <div class="button-group">
+                <button id="retry-btn">Retry Level</button>
+                <button id="next-level-btn">Next Level</button>
+                <button id="return-levels-btn">Return to Levels</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="therapy-game-js.js"></script>
+</body>
+</html>
