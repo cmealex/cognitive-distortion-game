@@ -10,39 +10,47 @@ body {
     background-color: #f5f7fa;
     color: #333;
     line-height: 1.6;
+    min-height: 100vh;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    width: 100%;
 }
 
 .screen {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    padding: 20px;
     margin: 20px auto;
     max-width: 900px;
+    width: 100%;
 }
 
+/* Responsive Typography */
 h1 {
     text-align: center;
     color: #3a7bd5;
     margin-bottom: 20px;
+    font-size: clamp(24px, 5vw, 32px);
 }
 
 h2 {
     color: #555;
     margin-bottom: 15px;
+    font-size: clamp(20px, 4vw, 24px);
 }
 
 h3 {
     color: #666;
     margin-bottom: 10px;
+    font-size: clamp(16px, 3vw, 20px);
 }
 
+/* Responsive Form Elements */
 .form-group {
     margin-bottom: 15px;
 }
@@ -52,15 +60,16 @@ label {
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
+    font-size: clamp(14px, 3vw, 16px);
 }
 
 input[type="text"],
 input[type="password"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: clamp(14px, 3vw, 16px);
 }
 
 button {
@@ -70,8 +79,13 @@ button {
     padding: 12px 20px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: clamp(14px, 3vw, 16px);
     transition: background-color 0.3s;
+    min-height: 44px; /* Minimum touch target size */
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    display: block;
 }
 
 button:hover {
@@ -145,7 +159,7 @@ button:hover {
 
 .avatar-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 15px;
     margin-top: 15px;
 }
@@ -185,7 +199,7 @@ button:hover {
 
 .level-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
     margin: 30px 0;
 }
@@ -225,6 +239,7 @@ button:hover {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    font-size: clamp(12px, 2.5vw, 14px);
 }
 
 #leaderboard-table th,
@@ -251,35 +266,37 @@ button:hover {
 
 .game-container {
     display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 30px;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .situation-panel,
 .distortion-panel {
-    flex: 1;
-    padding: 20px;
+    padding: 15px;
+    border-radius: 5px;
     background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    min-height: 100px;
 }
 
 .items-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
-    min-height: 400px;
+    margin-top: 20px;
 }
 
 .situation-item,
 .distortion-item {
     padding: 15px;
     border-radius: 5px;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: clamp(14px, 3vw, 16px);
 }
 
 .situation-item {
@@ -350,6 +367,7 @@ button:hover {
     gap: 15px;
     margin-top: 20px;
 }
+
 .avatar-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -377,4 +395,45 @@ button:hover {
 .avatar.selected {
     box-shadow: 0 0 0 4px #3a7bd5;
     transform: scale(1.05);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .screen {
+        padding: 15px;
+        margin: 10px auto;
+    }
+
+    .game-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .user-profile {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .user-profile img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .avatar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .level-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .items-container {
+        grid-template-columns: 1fr;
+    }
 }
