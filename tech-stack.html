@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Stack - Cognitive Distortion Matcher</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #3a7bd5;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+            border-bottom: 2px solid #3a7bd5;
+            padding-bottom: 10px;
+        }
+
+        .tech-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-card h3 {
+            color: #3a7bd5;
+            margin-top: 0;
+        }
+
+        .tech-card ul {
+            padding-left: 20px;
+        }
+
+        .tech-card li {
+            margin: 10px 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3a7bd5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #2c5aa0;
+        }
+
+        .highlight {
+            background-color: #e3f2fd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .benefits {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+        }
+
+        .benefits h4 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        footer#myFooter {
+            background-color: #3a7bd5;
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+        }
+        footer#myFooter a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Technology Stack</h1>
+        
+        <div class="tech-card">
+            <h3>Frontend Technologies</h3>
+            <ul>
+                <li>
+                    <strong>HTML5 & CSS3</strong>
+                    <p>Used for structuring and styling the game interface. Modern HTML5 features like semantic elements and CSS3 features like flexbox and grid were utilized for responsive design.</p>
+                </li>
+                <li>
+                    <strong>JavaScript (ES6+)</strong>
+                    <p>Core game logic and interactivity are implemented using modern JavaScript features like async/await, arrow functions, and classes.</p>
+                </li>
+                <li>
+                    <strong>SVG Graphics</strong>
+                    <p>Used for creating the avatars and game elements, providing scalable and interactive graphics without external dependencies.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tech-card">
+            <h3>Data Storage</h3>
+            <ul>
+                <li>
+                    <strong>IndexedDB</strong>
+                    <p>Chosen for client-side data storage because it:
+                        <ul>
+                            <li>Provides a robust, asynchronous database system</li>
+                            <li>Supports complex data structures and relationships</li>
+                            <li>Works offline and persists data between sessions</li>
+                            <li>Has better performance than localStorage for larger datasets</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tech-card">
+            <h3>Architecture</h3>
+            <ul>
+                <li>
+                    <strong>Modular Design</strong>
+                    <p>The codebase is organized into separate modules for:
+                        <ul>
+                            <li>Game logic (therapy-game-js.js)</li>
+                            <li>Database operations (game-db.js)</li>
+                            <li>UI components (index.html)</li>
+                            <li>Styling (therapy-game-css.css)</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <strong>Event-Driven Architecture</strong>
+                    <p>Uses JavaScript's event system for handling user interactions and game state changes.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="benefits">
+            <h4>Why This Stack?</h4>
+            <ul>
+                <li><strong>Performance:</strong> All technologies are optimized for modern browsers and provide excellent performance.</li>
+                <li><strong>Offline Capability:</strong> IndexedDB allows the game to work without an internet connection.</li>
+                <li><strong>Maintainability:</strong> Clear separation of concerns makes the code easy to maintain and extend.</li>
+                <li><strong>Accessibility:</strong> Semantic HTML and proper ARIA attributes ensure the game is accessible to all users.</li>
+                <li><strong>Cross-Platform:</strong> Works on all modern browsers without requiring additional plugins or installations.</li>
+            </ul>
+        </div>
+
+        <div class="tech-card">
+            <h3>Future Considerations</h3>
+            <ul>
+                <li>
+                    <strong>Progressive Web App (PWA) Features</strong>
+                    <p>Could be enhanced with service workers for offline functionality and app-like installation.</p>
+                </li>
+                <li>
+                    <strong>Backend Integration</strong>
+                    <p>Could be extended with a Node.js backend for multiplayer features and cloud storage.</p>
+                </li>
+                <li>
+                    <strong>Framework Integration</strong>
+                    <p>Could be migrated to React or Vue.js for more complex UI interactions and state management.</p>
+                </li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="back-button">Back to Game</a>
+    </div>
+
+    <footer id="myFooter">
+        <p>For more information about this page, click <a href="despre.html">here</a>.</p>
+        <p>Implemented by Alex Simion - © Copyright 2025 - <a href="https://www.psyalexsimion.com/">www.psyalexsimion.com</a></p>
+    </footer>
+</body>
+</html> 
