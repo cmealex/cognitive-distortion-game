@@ -317,14 +317,25 @@ function updateProfileDisplay() {
 // Load user progress from database
 async function loadUserProgress(username) {
     try {
-        const progress = await gameDB.getProgress(username, currentLevel);
+        console.log('Loading progress for user:', username);
+        const progress = await gameDB.getProgress(username);
+        console.log('Retrieved progress:', progress);
+        
         if (progress && progress.length > 0) {
             // Get the highest level completed
             const highestLevel = Math.max(...progress.map(p => p.level));
+            console.log('Highest level completed:', highestLevel);
             unlockedLevels = Math.max(highestLevel + 1, 1); // Unlock next level
+        } else {
+            console.log('No progress found, starting at level 1');
+            // New user - start with only level 1 unlocked
+            unlockedLevels = 1;
         }
+        console.log('Unlocked levels set to:', unlockedLevels);
     } catch (error) {
         console.error('Error loading user progress:', error);
+        // On error, default to level 1
+        unlockedLevels = 1;
     }
 }
 
@@ -336,6 +347,8 @@ async function renderLevelGrid() {
     const username = document.getElementById('logged-in-username').textContent;
     await loadUserProgress(username);
     
+    console.log('Rendering level grid with unlocked levels:', unlockedLevels);
+    
     for (let i = 1; i <= MAX_LEVELS; i++) {
         const levelItem = document.createElement('div');
         levelItem.className = `level-item ${i <= unlockedLevels ? 'unlocked' : 'locked'}`;
@@ -343,6 +356,9 @@ async function renderLevelGrid() {
         
         if (i <= unlockedLevels) {
             levelItem.addEventListener('click', () => startLevel(i));
+        } else {
+            levelItem.style.cursor = 'not-allowed';
+            levelItem.title = 'Complete previous levels to unlock';
         }
         
         levelGrid.appendChild(levelItem);
@@ -397,6 +413,7 @@ async function renderLeaderboard() {
 
 // Game Functions
 async function startLevel(level) {
+    console.log('Starting level:', level);
     currentLevel = level;
     document.getElementById('current-level').textContent = level;
     
@@ -607,6 +624,8 @@ function startTimer() {
 
 // End level and update leaderboard
 async function endLevel(isCompleted) {
+    console.log('Ending level:', currentLevel, 'Completed:', isCompleted);
+    
     // Clear timer
     if (timerInterval) {
         clearInterval(timerInterval);
@@ -623,27 +642,37 @@ async function endLevel(isCompleted) {
     document.getElementById('final-score').textContent = score;
     document.getElementById('max-score').textContent = situations.length;
     
-    // Check if next level should be unlocked
-    const unlockNextLevel = isCompleted && currentLevel === unlockedLevels && currentLevel < MAX_LEVELS;
+    const username = document.getElementById('logged-in-username').textContent;
     
-    if (unlockNextLevel) {
-        unlockedLevels++;
-        document.getElementById('level-unlocked').classList.remove('hidden');
-        document.getElementById('unlocked-level').textContent = unlockedLevels;
-    } else {
-        document.getElementById('level-unlocked').classList.add('hidden');
-    }
-    
-    // Update leaderboard if completed
+    // Always save progress if level was completed
     if (isCompleted) {
         try {
-            const username = document.getElementById('logged-in-username').textContent;
-            await gameDB.addToLeaderboard(username, currentLevel, score, timeUsed);
+            console.log('Saving progress for level:', currentLevel);
+            // Save progress to database
             await gameDB.saveProgress(username, currentLevel, score, timeUsed);
-            await renderLeaderboard(); // Make sure to await this
+            
+            // Update leaderboard
+            await gameDB.addToLeaderboard(username, currentLevel, score, timeUsed);
+            await renderLeaderboard();
+            
+            // Check if next level should be unlocked
+            console.log('Current unlocked levels:', unlockedLevels);
+            if (currentLevel === unlockedLevels && currentLevel < MAX_LEVELS) {
+                unlockedLevels++;
+                console.log('Unlocking level:', unlockedLevels);
+                document.getElementById('level-unlocked').classList.remove('hidden');
+                document.getElementById('unlocked-level').textContent = unlockedLevels;
+                
+                // Save the new unlocked level
+                await gameDB.saveProgress(username, currentLevel, score, timeUsed);
+            } else {
+                document.getElementById('level-unlocked').classList.add('hidden');
+            }
         } catch (error) {
-            console.error('Error updating leaderboard:', error);
+            console.error('Error saving progress or updating leaderboard:', error);
         }
+    } else {
+        document.getElementById('level-unlocked').classList.add('hidden');
     }
     
     // Show/hide next level button

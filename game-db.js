@@ -17,44 +17,44 @@ let db = null;
 function initDB() {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open(DB_NAME, DB_VERSION);
-
-        request.onerror = () => {
-            console.error('Database error:', request.error);
-            reject(request.error);
+        
+        request.onerror = function(event) {
+            console.error('Database error:', event.target.error);
+            reject(event.target.error);
         };
-
-        request.onsuccess = () => {
-            db = request.result;
+        
+        request.onsuccess = function(event) {
+            db = event.target.result;
             resolve(db);
         };
-
-        request.onupgradeneeded = (event) => {
+        
+        request.onupgradeneeded = function(event) {
             const db = event.target.result;
-
+            
             // Create users store
             if (!db.objectStoreNames.contains(STORES.USERS)) {
                 const usersStore = db.createObjectStore(STORES.USERS, { keyPath: 'username' });
                 usersStore.createIndex('username', 'username', { unique: true });
             }
-
+            
             // Create profiles store
             if (!db.objectStoreNames.contains(STORES.PROFILES)) {
                 const profilesStore = db.createObjectStore(STORES.PROFILES, { keyPath: 'username' });
                 profilesStore.createIndex('username', 'username', { unique: true });
             }
-
+            
             // Create progress store
             if (!db.objectStoreNames.contains(STORES.PROGRESS)) {
                 const progressStore = db.createObjectStore(STORES.PROGRESS, { keyPath: 'id', autoIncrement: true });
-                progressStore.createIndex('username', 'username');
-                progressStore.createIndex('level', 'level');
+                progressStore.createIndex('username', 'username', { unique: false });
+                progressStore.createIndex('level', 'level', { unique: false });
             }
-
+            
             // Create leaderboard store
             if (!db.objectStoreNames.contains(STORES.LEADERBOARD)) {
                 const leaderboardStore = db.createObjectStore(STORES.LEADERBOARD, { keyPath: 'id', autoIncrement: true });
-                leaderboardStore.createIndex('level', 'level');
-                leaderboardStore.createIndex('score', 'score');
+                leaderboardStore.createIndex('level', 'level', { unique: false });
+                leaderboardStore.createIndex('score', 'score', { unique: false });
             }
         };
     });
@@ -130,28 +130,74 @@ async function getProfile(username) {
 
 // Progress management functions
 async function saveProgress(username, level, score, time) {
-    const transaction = db.transaction(STORES.PROGRESS, 'readwrite');
-    const store = transaction.objectStore(STORES.PROGRESS);
-    
     return new Promise((resolve, reject) => {
-        const request = store.add({ username, level, score, time, timestamp: new Date() });
-        request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        
+        request.onsuccess = function(event) {
+            const db = event.target.result;
+            const transaction = db.transaction([STORES.PROGRESS], 'readwrite');
+            const store = transaction.objectStore(STORES.PROGRESS);
+            
+            // Create progress object
+            const progress = {
+                username: username,
+                level: level,
+                score: score,
+                time: time,
+                timestamp: new Date().getTime()
+            };
+            
+            // Add or update progress
+            const request = store.put(progress);
+            
+            request.onsuccess = function() {
+                console.log('Progress saved successfully:', progress);
+                resolve();
+            };
+            
+            request.onerror = function(event) {
+                console.error('Error saving progress:', event.target.error);
+                reject(event.target.error);
+            };
+        };
+        
+        request.onerror = function(event) {
+            console.error('Error opening database:', event.target.error);
+            reject(event.target.error);
+        };
     });
 }
 
-async function getProgress(username, level) {
-    const transaction = db.transaction(STORES.PROGRESS, 'readonly');
-    const store = transaction.objectStore(STORES.PROGRESS);
-    const index = store.index('username');
-    
+async function getProgress(username) {
     return new Promise((resolve, reject) => {
-        const request = index.getAll(IDBKeyRange.only(username));
-        request.onsuccess = () => {
-            const progress = request.result.filter(p => p.level === level);
-            resolve(progress);
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        
+        request.onsuccess = function(event) {
+            const db = event.target.result;
+            const transaction = db.transaction([STORES.PROGRESS], 'readonly');
+            const store = transaction.objectStore(STORES.PROGRESS);
+            
+            // Get all progress entries and filter by username
+            const request = store.getAll();
+            
+            request.onsuccess = function() {
+                const allProgress = request.result;
+                // Filter progress for this user
+                const userProgress = allProgress.filter(p => p.username === username);
+                console.log('Retrieved progress from DB for user:', username, userProgress);
+                resolve(userProgress);
+            };
+            
+            request.onerror = function(event) {
+                console.error('Error getting progress:', event.target.error);
+                reject(event.target.error);
+            };
         };
-        request.onerror = () => reject(request.error);
+        
+        request.onerror = function(event) {
+            console.error('Error opening database:', event.target.error);
+            reject(event.target.error);
+        };
     });
 }
 
