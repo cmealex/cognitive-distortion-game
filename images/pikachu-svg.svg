@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <!-- Background -->
+  <circle cx="80" cy="80" r="70" fill="#ffeaa7" fill-opacity="0.7" />
+  
+  <!-- Pokémon name -->
+  <text x="80" y="25" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">PIKACHU</text>
+  
+  <!-- Pikachu body -->
+  <ellipse cx="80" cy="80" rx="40" ry="35" fill="#FFF000"/>
+  <!-- Ears -->
+  <path d="M60,50 L40,20 L60,45 Z" fill="#FFF000" stroke="#000" stroke-width="1"/>
+  <path d="M100,50 L120,20 L100,45 Z" fill="#FFF000" stroke="#000" stroke-width="1"/>
+  <!-- Black ear tips -->
+  <path d="M40,20 L47,30 L52,22 Z" fill="#000"/>
+  <path d="M120,20 L113,30 L108,22 Z" fill="#000"/>
+  <!-- Face -->
+  <circle cx="67" cy="70" r="4" fill="#000"/> <!-- left eye -->
+  <circle cx="93" cy="70" r="4" fill="#000"/> <!-- right eye -->
+  <path d="M73,85 C77,90 83,90 87,85" stroke="#000" stroke-width="1.5" fill="none"/> <!-- mouth -->
+  <path d="M80,80 L62,77 L68,80 M80,80 L98,77 L92,80" stroke="#AA0000" stroke-width="1.5" fill="none"/> <!-- cheeks -->
+  <!-- Tail -->
+  <path d="M120,80 L140,65 L150,80 L140,95 Z" fill="#AA7700"/>
+  <path d="M110,80 L120,80 L140,65 L130,70 Z" fill="#FFF000"/>
+  <!-- Lightning bolt -->
+  <path d="M30,80 L40,65 L50,70 L40,95 Z" fill="#FFD700" stroke="#000" stroke-width="1"/>
+  
+  <!-- Label -->
+  <text x="80" y="130" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Positive Reinforcement</text>
+</svg>

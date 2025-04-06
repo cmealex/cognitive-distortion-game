@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Cognitive Distortion Game</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #2ecc71;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--background-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .steps-list {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+
+        .steps-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Button Styles */
+        .button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content, .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Cognitive Distortion Game</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Despre.html">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">About Cognitive Distortion Game</h1>
+
+        <section class="section">
+            <h2>What is Cognitive Distortion?</h2>
+            <p>Cognitive distortions are irrational or exaggerated thought patterns that can negatively impact our emotions and behaviors. These patterns often lead to anxiety, depression, and other mental health challenges. This game helps you identify and understand these patterns through an engaging and interactive experience.</p>
+        </section>
+
+        <section class="section">
+            <h2>Game Features</h2>
+            <ul class="feature-list">
+                <li><strong>Interactive Learning:</strong> Learn about different types of cognitive distortions through engaging gameplay</li>
+                <li><strong>Multiple Levels:</strong> Progress through increasingly challenging levels as you master the concepts</li>
+                <li><strong>Personalized Experience:</strong> Create your profile and track your progress</li>
+                <li><strong>Real-world Examples:</strong> Practice identifying distortions in realistic scenarios</li>
+                <li><strong>Progress Tracking:</strong> Monitor your improvement over time</li>
+                <li><strong>Leaderboard:</strong> Compare your performance with other players</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>How to Play</h2>
+            <ol class="steps-list">
+                <li>Login with your existing account</li>
+                <li>Choose your avatar and customize your profile</li>
+                <li>Start with Level 1 and progress through the game</li>
+                <li>Read each scenario carefully and identify the cognitive distortion</li>
+                <li>Match the scenario with the correct distortion type</li>
+                <li>Complete levels to unlock new challenges</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2>Benefits</h2>
+            <p>Playing this game can help you:</p>
+            <ul class="feature-list">
+                <li>Recognize negative thought patterns in your daily life</li>
+                <li>Develop healthier thinking habits</li>
+                <li>Improve emotional well-being</li>
+                <li>Build resilience against cognitive distortions</li>
+                <li>Learn practical strategies for challenging negative thoughts</li>
+            </ul>
+        </section>
+
+        <div class="button-container">
+            <a href="index.html" class="button">Start Playing</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="copyright">
+                &copy; 2024 Cognitive Distortion Game. All rights reserved.
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">Facebook</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

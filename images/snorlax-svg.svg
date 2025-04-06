@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <!-- Background -->
+  <circle cx="80" cy="80" r="70" fill="#74b9ff" fill-opacity="0.7" />
+  
+  <!-- Pokémon name -->
+  <text x="80" y="25" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">SNORLAX</text>
+  
+  <!-- Snorlax body -->
+  <ellipse cx="80" cy="90" rx="50" ry="40" fill="#6890F0"/>
+  <!-- Head -->
+  <ellipse cx="80" cy="55" rx="25" ry="20" fill="#6890F0"/>
+  <!-- Face -->
+  <line x1="68" y1="50" x2="77" y2="50" stroke="#000" stroke-width="2"/> <!-- left eye (closed) -->
+  <line x1="83" y1="50" x2="92" y2="50" stroke="#000" stroke-width="2"/> <!-- right eye (closed) -->
+  <path d="M73,58 C77,61 83,61 87,58" stroke="#000" stroke-width="1.5" fill="none"/> <!-- mouth -->
+  <!-- Belly -->
+  <ellipse cx="80" cy="95" rx="35" ry="25" fill="#EEEEFF"/>
+  <!-- Z's for sleep -->
+  <text x="105" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#333">Z</text>
+  <text x="120" y="30" font-family="Arial" font-weight="bold" font-size="16" fill="#333">Z</text>
+  <text x="130" y="20" font-family="Arial" font-weight="bold" font-size="12" fill="#333">Z</text>
+  <!-- Thought bubble -->
+  <ellipse cx="40" cy="30" rx="20" ry="13" fill="#fff" stroke="#000" stroke-width="1"/>
+  <circle cx="50" cy="42" r="5" fill="#fff" stroke="#000" stroke-width="1"/>
+  <circle cx="55" cy="47" r="3" fill="#fff" stroke="#000" stroke-width="1"/>
+  
+  <!-- Label -->
+  <text x="80" y="130" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">The Unconscious Mind</text>
+</svg>

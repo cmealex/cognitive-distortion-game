@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f5ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5f0ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg-gradient)"/>
+  
+  <!-- Title -->
+  <text x="450" y="50" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="#333">Pokémon & Psychology Concepts</text>
+  
+  <!-- Central brain shape to connect the concepts -->
+  <path d="M450,130 C600,130 650,300 650,350 C650,450 550,500 450,500 C350,500 250,450 250,350 C250,300 300,130 450,130 Z" 
+        fill="none" stroke="#888" stroke-width="2" stroke-dasharray="5,5" />
+  
+  <!-- Connecting lines to each Pokémon -->
+  <line x1="450" y1="300" x2="200" y2="180" stroke="#888" stroke-width="2" stroke-dasharray="5,5" />
+  <line x1="450" y1="300" x2="200" y2="420" stroke="#888" stroke-width="2" stroke-dasharray="5,5" />
+  <line x1="450" y1="300" x2="450" y2="180" stroke="#888" stroke-width="2" stroke-dasharray="5,5" />
+  <line x1="450" y1="300" x2="450" y2="420" stroke="#888" stroke-width="2" stroke-dasharray="5,5" />
+  <line x1="450" y1="300" x2="700" y2="180" stroke="#888" stroke-width="2" stroke-dasharray="5,5" />
+  <line x1="450" y1="300" x2="700" y2="420" stroke="#888" stroke-width="2" stroke-dasharray="5,5" />
+  
+  <!-- Central "Psychology" node -->
+  <circle cx="450" cy="300" r="40" fill="#6c5ce7" />
+  <text x="450" y="305" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Psychology</text>
+  
+  <!-- 1. PIKACHU - Positive Reinforcement (top left) -->
+  <g transform="translate(200, 180)">
+    <!-- Circle background -->
+    <circle cx="0" cy="0" r="70" fill="#ffeaa7" fill-opacity="0.7" />
+    
+    <!-- Pokémon name -->
+    <text x="0" y="-55" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">PIKACHU</text>
+    
+    <!-- Pikachu body -->
+    <ellipse cx="0" cy="0" rx="40" ry="35" fill="#FFF000"/>
+    <!-- Ears -->
+    <path d="M-20,-30 L-40,-60 L-20,-35 Z" fill="#FFF000" stroke="#000" stroke-width="1"/>
+    <path d="M20,-30 L40,-60 L20,-35 Z" fill="#FFF000" stroke="#000" stroke-width="1"/>
+    <!-- Black ear tips -->
+    <path d="M-40,-60 L-33,-50 L-28,-58 Z" fill="#000"/>
+    <path d="M40,-60 L33,-50 L28,-58 Z" fill="#000"/>
+    <!-- Face -->
+    <circle cx="-13" cy="-10" r="4" fill="#000"/> <!-- left eye -->
+    <circle cx="13" cy="-10" r="4" fill="#000"/> <!-- right eye -->
+    <path d="M-7,5 C-3,10 3,10 7,5" stroke="#000" stroke-width="1.5" fill="none"/> <!-- mouth -->
+    <path d="M0,0 L-18,-3 L-12,0 M0,0 L18,-3 L12,0" stroke="#AA0000" stroke-width="1.5" fill="none"/> <!-- cheeks -->
+    <!-- Tail -->
+    <path d="M40,0 L60,-15 L70,0 L60,15 Z" fill="#AA7700"/>
+    <path d="M30,0 L40,0 L60,-15 L50,-10 Z" fill="#FFF000"/>
+    <!-- Lightning bolt -->
+    <path d="M-50,0 L-40,-15 L-30,-10 L-40,15 Z" fill="#FFD700" stroke="#000" stroke-width="1"/>
+    
+    <!-- Label -->
+    <text x="0" y="50" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Positive Reinforcement</text>
+  </g>
+  
+  <!-- 2. SNORLAX - Unconscious Mind (top center) -->
+  <g transform="translate(450, 180)">
+    <!-- Circle background -->
+    <circle cx="0" cy="0" r="70" fill="#74b9ff" fill-opacity="0.7" />
+    
+    <!-- Pokémon name -->
+    <text x="0" y="-55" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">SNORLAX</text>
+    
+    <!-- Snorlax body -->
+    <ellipse cx="0" cy="10" rx="50" ry="40" fill="#6890F0"/>
+    <!-- Head -->
+    <ellipse cx="0" cy="-25" rx="25" ry="20" fill="#6890F0"/>
+    <!-- Face -->
+    <line x1="-12" y1="-30" x2="-3" y2="-30" stroke="#000" stroke-width="2"/> <!-- left eye (closed) -->
+    <line x1="3" y1="-30" x2="12" y2="-30" stroke="#000" stroke-width="2"/> <!-- right eye (closed) -->
+    <path d="M-7,-22 C-3,-19 3,-19 7,-22" stroke="#000" stroke-width="1.5" fill="none"/> <!-- mouth -->
+    <!-- Belly -->
+    <ellipse cx="0" cy="15" rx="35" ry="25" fill="#EEEEFF"/>
+    <!-- Z's for sleep -->
+    <text x="25" y="-40" font-family="Arial" font-weight="bold" font-size="20" fill="#333">Z</text>
+    <text x="40" y="-50" font-family="Arial" font-weight="bold" font-size="16" fill="#333">Z</text>
+    <text x="50" y="-60" font-family="Arial" font-weight="bold" font-size="12" fill="#333">Z</text>
+    <!-- Thought bubble -->
+    <ellipse cx="-40" cy="-50" rx="20" ry="13" fill="#fff" stroke="#000" stroke-width="1"/>
+    <circle cx="-30" cy="-38" r="5" fill="#fff" stroke="#000" stroke-width="1"/>
+    <circle cx="-25" cy="-33" r="3" fill="#fff" stroke="#000" stroke-width="1"/>
+    
+    <!-- Label -->
+    <text x="0" y="50" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">The Unconscious Mind</text>
+  </g>
+  
+  <!-- 3. PSYDUCK - Anxiety (top right) -->
+  <g transform="translate(700, 180)">
+    <!-- Circle background -->
+    <circle cx="0" cy="0" r="70" fill="#fab1a0" fill-opacity="0.7" />
+    
+    <!-- Pokémon name -->
+    <text x="0" y="-55" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">PSYDUCK</text>
+    
+    <!-- Psyduck body -->
+    <ellipse cx="0" cy="10" rx="30" ry="35" fill="#FFD54F"/>
+    <!-- Head -->
+    <ellipse cx="0" cy="-20" rx="25" ry="30" fill="#FFD54F"/>
+    <!-- Bill -->
+    <path d="M0,-15 L15,-5 L0,0 L-15,-5 Z" fill="#FFB74D"/>
+    <!-- Eyes -->
+    <ellipse cx="-10" cy="-25" rx="4" ry="6" fill="#fff"/>
+    <ellipse cx="10" cy="-25" rx="4" ry="6" fill="#fff"/>
+    <circle cx="-10" cy="-25" r="2" fill="#000"/>
+    <circle cx="10" cy="-25" r="2" fill="#000"/>
+    <!-- Hands on head -->
+    <ellipse cx="-25" cy="-20" rx="10" ry="7" fill="#FFD54F" transform="rotate(-20)"/>
+    <ellipse cx="25" cy="-20" rx="10" ry="7" fill="#FFD54F" transform="rotate(20)"/>
+    <!-- Swirl above head -->
+    <path d="M0,-50 C6,-50 12,-47 12,-40 C12,-33 0,-33 0,-26 C0,-19 12,-19 12,-12" stroke="#5D4037" stroke-width="2" fill="none"/>
+    
+    <!-- Label -->
+    <text x="0" y="50" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Anxiety Disorder</text>
+  </g>
+  
+  <!-- 4. JIGGLYPUFF - Classical Conditioning (bottom left) -->
+  <g transform="translate(200, 420)">
+    <!-- Circle background -->
+    <circle cx="0" cy="0" r="70" fill="#fd79a8" fill-opacity="0.7" />
+    
+    <!-- Pokémon name -->
+    <text x="0" y="-55" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">JIGGLYPUFF</text>
+    
+    <!-- Jigglypuff body -->
+    <circle cx="0" cy="0" r="40" fill="#FFA6C9"/>
+    <!-- Eyes -->
+    <ellipse cx="-15" cy="-15" rx="7" ry="10" fill="#fff"/>
+    <ellipse cx="15" cy="-15" rx="7" ry="10" fill="#fff"/>
+    <circle cx="-15" cy="-15" r="3" fill="#000"/>
+    <circle cx="15" cy="-15" r="3" fill="#000"/>
+    <!-- Mouth -->
+    <path d="M-10,10 C-3,16 3,16 10,10" stroke="#000" stroke-width="1.5" fill="none"/>
+    <!-- Ears -->
+    <ellipse cx="0" cy="-45" rx="10" ry="7" fill="#FFA6C9" transform="rotate(-5)"/>
+    <!-- Microphone/marker -->
+    <rect x="30" y="-5" width="3" height="25" fill="#333" rx="1"/>
+    <ellipse cx="31.5" cy="-8" rx="8" ry="6" fill="#333"/>
+    <!-- Musical notes -->
+    <path d="M-40,-15 L-35,-25 L-30,-22 L-35,-12 Z" fill="#333"/>
+    <line x1="-30" y1="-22" x2="-27" y2="-10" stroke="#333" stroke-width="1.5"/>
+    <path d="M-50,5 L-45,-5 L-40,-2 L-45,8 Z" fill="#333"/>
+    <line x1="-40" y1="-2" x2="-37" y2="10" stroke="#333" stroke-width="1.5"/>
+    
+    <!-- Label -->
+    <text x="0" y="50" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Classical Conditioning</text>
+  </g>
+  
+  <!-- 5. GENGAR - Shadow Self (bottom center) -->
+  <g transform="translate(450, 420)">
+    <!-- Circle background -->
+    <circle cx="0" cy="0" r="70" fill="#a29bfe" fill-opacity="0.7" />
+    
+    <!-- Pokémon name -->
+    <text x="0" y="-55" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">GENGAR</text>
+    
+    <!-- Gengar body -->
+    <path d="M0,30 C-40,30 -45,-15 0,-25 C45,-15 40,30 0,30 Z" fill="#663399"/>
+    <!-- Eyes -->
+    <ellipse cx="-15" cy="-8" rx="10" ry="13" fill="#fff"/>
+    <ellipse cx="15" cy="-8" rx="10" ry="13" fill="#fff"/>
+    <circle cx="-15" cy="-8" r="5" fill="#FF0000"/>
+    <circle cx="15" cy="-8" r="5" fill="#FF0000"/>
+    <circle cx="-15" cy="-8" r="2" fill="#000"/>
+    <circle cx="15" cy="-8" r="2" fill="#000"/>
+    <!-- Mouth -->
+    <path d="M-20,10 C-10,20 10,20 20,10" stroke="#fff" stroke-width="2" fill="none"/>
+    <!-- Spikes -->
+    <path d="M-30,-20 L-28,-25 L-25,-20" stroke="#663399" stroke-width="5" fill="none"/>
+    <path d="M-10,-25 L-8,-35 L-6,-25" stroke="#663399" stroke-width="5" fill="none"/>
+    <path d="M6,-25 L8,-35 L10,-25" stroke="#663399" stroke-width="5" fill="none"/>
+    <path d="M25,-20 L28,-25 L30,-20" stroke="#663399" stroke-width="5" fill="none"/>
+    <!-- Shadow beneath -->
+    <ellipse cx="0" cy="30" rx="30" ry="5" fill="#000" fill-opacity="0.3"/>
+    <!-- Yin-Yang symbol -->
+    <circle cx="-45" cy="0" r="15" fill="#fff" stroke="#000" stroke-width="1"/>
+    <path d="M-45,-15 L-45,15 M-60,0 L-30,0" stroke="#000" stroke-width="1"/>
+    <path d="M-45,0 C-40,-8 -35,0 -40,8 Z" fill="#000"/>
+    <path d="M-45,0 C-50,-8 -55,0 -50,8 Z" fill="#fff"/>
+    
+    <!-- Label -->
+    <text x="0" y="50" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">The Shadow Self</text>
+  </g>
+  
+  <!-- 6. MEOWTH - Operant Conditioning (bottom right) -->
+  <g transform="translate(700, 420)">
+    <!-- Circle background -->
+    <circle cx="0" cy="0" r="70" fill="#ffeaa7" fill-opacity="0.7" />
+    
+    <!-- Pokémon name -->
+    <text x="0" y="-55" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">MEOWTH</text>
+    
+    <!-- Meowth body -->
+    <ellipse cx="0" cy="10" rx="25" ry="30" fill="#F5DEB3"/>
+    <!-- Head -->
+    <circle cx="0" cy="-20" r="25" fill="#F5DEB3"/>
+    <!-- Ears -->
+    <path d="M-20,-40 L-30,-60 L-10,-45 Z" fill="#F5DEB3" stroke="#000" stroke-width="1"/>
+    <path d="M20,-40 L30,-60 L10,-45 Z" fill="#F5DEB3" stroke="#000" stroke-width="1"/>
+    <!-- Black ear tips -->
+    <path d="M-30,-60 L-25,-50 L-20,-55 Z" fill="#000"/>
+    <path d="M30,-60 L25,-50 L20,-55 Z" fill="#000"/>
+    <!-- Face -->
+    <ellipse cx="-10" cy="-20" rx="3" ry="6" fill="#000"/> <!-- left eye -->
+    <ellipse cx="10" cy="-20" rx="3" ry="6" fill="#000"/> <!-- right eye -->
+    <ellipse cx="0" cy="-10" rx="5" ry="3" fill="#FF9999"/> <!-- nose -->
+    <path d="M0,-10 L0,-5 M-12,-5 C-6,3 6,3 12,-5" stroke="#000" stroke-width="1.5" fill="none"/> <!-- mouth whiskers -->
+    <line x1="-18" y1="-15" x2="-30" y2="-17" stroke="#000" stroke-width="0.7"/> <!-- whisker -->
+    <line x1="-18" y1="-10" x2="-30" y2="-10" stroke="#000" stroke-width="0.7"/> <!-- whisker -->
+    <line x1="-18" y1="-5" x2="-30" y2="-3" stroke="#000" stroke-width="0.7"/> <!-- whisker -->
+    <line x1="18" y1="-15" x2="30" y2="-17" stroke="#000" stroke-width="0.7"/> <!-- whisker -->
+    <line x1="18" y1="-10" x2="30" y2="-10" stroke="#000" stroke-width="0.7"/> <!-- whisker -->
+    <line x1="18" y1="-5" x2="30" y2="-3" stroke="#000" stroke-width="0.7"/> <!-- whisker -->
+    <!-- Coin on forehead -->
+    <circle cx="0" cy="-35" r="8" fill="#FFD700" stroke="#000" stroke-width="1"/>
+    <!-- Coins/rewards -->
+    <circle cx="-40" cy="0" r="10" fill="#FFD700" stroke="#000" stroke-width="1"/>
+    <circle cx="-45" cy="-15" r="7" fill="#FFD700" stroke="#000" stroke-width="1"/>
+    <circle cx="-35" cy="-25" r="8" fill="#FFD700" stroke="#000" stroke-width="1"/>
+    <!-- Paw reaching for coins -->
+    <path d="M-15,15 L-30,-3" stroke="#F5DEB3" stroke-width="5" fill="none"/>
+    <circle cx="-32" cy="-5" r="7" fill="#F5DEB3"/>
+    
+    <!-- Label -->
+    <text x="0" y="50" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Operant Conditioning</text>
+  </g>
+  
+  <!-- Legend for the concepts -->
+  <rect x="700" y="500" width="180" height="90" rx="10" fill="white" stroke="#333" stroke-width="1"/>
+  <text x="790" y="520" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Psychology Concepts</text>
+  <line x1="710" y1="530" x2="870" y2="530" stroke="#333" stroke-width="1"/>
+  <text x="790" y="545" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Behavioral Psychology: Pikachu, Jigglypuff, Meowth</text>
+  <text x="790" y="560" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Psychoanalysis: Snorlax, Gengar</text>
+  <text x="790" y="575" font-family="Arial" font-size="10" text-anchor="middle" fill="#333">Clinical Psychology: Psyduck</text>
+  
+  <!-- Footer text -->
+  <text x="450" y="580" font-family="Arial" font-size="12" text-anchor="middle" fill="#555">
+    Psychology concepts illustrated through Pokémon characteristics
+  </text>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <!-- Background -->
+  <circle cx="80" cy="80" r="70" fill="#fd79a8" fill-opacity="0.7" />
+  
+  <!-- Pokémon name -->
+  <text x="80" y="25" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">JIGGLYPUFF</text>
+  
+  <!-- Jigglypuff body -->
+  <circle cx="80" cy="80" r="40" fill="#FFA6C9"/>
+  <!-- Eyes -->
+  <ellipse cx="65" cy="65" rx="7" ry="10" fill="#fff"/>
+  <ellipse cx="95" cy="65" rx="7" ry="10" fill="#fff"/>
+  <circle cx="65" cy="65" r="3" fill="#000"/>
+  <circle cx="95" cy="65" r="3" fill="#000"/>
+  <!-- Mouth -->
+  <path d="M70,90 C77,96 83,96 90,90" stroke="#000" stroke-width="1.5" fill="none"/>
+  <!-- Ears -->
+  <ellipse cx="80" cy="35" rx="10" ry="7" fill="#FFA6C9" transform="rotate(-5)"/>
+  <!-- Microphone/marker -->
+  <rect x="110" y="75" width="3" height="25" fill="#333" rx="1"/>
+  <ellipse cx="111.5" cy="72" rx="8" ry="6" fill="#333"/>
+  <!-- Musical notes -->
+  <path d="M40,65 L45,55 L50,58 L45,68 Z" fill="#333"/>
+  <line x1="50" y1="58" x2="53" y2="70" stroke="#333" stroke-width="1.5"/>
+  <path d="M30,85 L35,75 L40,78 L35,88 Z" fill="#333"/>
+  <line x1="40" y1="78" x2="43" y2="90" stroke="#333" stroke-width="1.5"/>
+  
+  <!-- Label -->
+  <text x="80" y="130" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">Classical Conditioning</text>
+</svg>

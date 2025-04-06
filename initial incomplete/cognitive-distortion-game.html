@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Distortion Challenge</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --background-color: #f5f5f5;
+            --white: #ffffff;
+            --light-gray: #ecf0f1;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Login Screen */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* Admin Panel */
+        .admin-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .admin-container h1 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .admin-section {
+            margin-bottom: 30px;
+        }
+
+        .admin-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: var(--light-gray);
+            font-weight: 600;
+        }
+
+        /* Profile Setup */
+        .profile-setup {
+            max-width: 500px;
+            margin: 100px auto;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .profile-setup h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .avatar-selection {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar-option {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .avatar-option:hover {
+            transform: scale(1.1);
+        }
+
+        .avatar-option.selected {
+            border-color: var(--primary-color);
+        }
+
+        /* Game Container */
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+            overflow: auto;
+        }
+
+        .panel {
+            flex: 1;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .panel-title {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .situation-card, .distortion-card {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .situation-card {
+            cursor: default;
+        }
+
+        .distortion-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .distortion-card.incorrect {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .distortion-card .info-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            color: var(--primary-color);
+            cursor: help;
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            z-index: 100;
+            font-size: 14px;
+            max-width: 300px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .info-icon:hover + .tooltip {
+            opacity: 1;
+        }
+
+        .timer-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .timer {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 100%;
+            transition: width linear;
+        }
+
+        /* Level Complete */
+        .level-complete {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .level-complete-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .level-complete h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .level-stats {
+            margin-bottom: 25px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .stat-label {
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #ddd;
+        }
+
+        /* Leaderboard */
+        .leaderboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .leaderboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .leaderboard-title {
+            color: var(--primary-color);
+        }
+
+        .leaderboard-navigation {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .level-tab {
+            padding: 8px 15px;
+            background-color: var(--light-gray);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .level-tab.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .leaderboard-table {
+            width: 100%;
+        }
+
+        .position-cell {
+            width: 10%;
+            text-align: center;
+        }
+
+        .player-cell {
+            width: 40%;
+            display: flex;
+            align-items: center;
+        }
+
+        .mini-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Documentation */
+        .documentation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .documentation-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+
+        .distortion-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .distortion-item {
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            background-color: var(--light-gray);
+        }
+
+        .distortion-name {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .distortion-description {
+            margin-bottom: 10px;
+        }
+
+        .distortion-example {
+            font-style: italic;
+            color: #666;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+            margin-top: 10px;
+        }
+
+        /* Navigation */
+        .menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .menu-item {
+            color: var(--white);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Media Queries for Mobile */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .panel {
+                max-width: 100%;
+            }
+
+            .game-stats {
+                gap: 10px;
+            }
+
+            .stat-value {
+                font-size: 16px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .menu {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <h1>Cognitive Distortion Challenge</h1>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <button id="login-btn" class="btn">Login</button>
+        <p id="login-error" class="error-message hidden"></p>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-container hidden">
+        <h1>Admin Panel</h1>
+        
+        <div class="admin-section">
+            <h2>Create User</h2>
+            <div class="form-group">
+                <label for="new-username">Username</label>
+                <input type="text" id="new-username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="new-password">Password</label>
+                <input type="password" id="new-password" placeholder="Enter password">
+            </div>
+            <button id="create-user-btn" class="btn">Create User</button>
+            <p id="create-user-message" class="hidden"></p>
+        </div>
+        
+        <div class="admin-section">
+            <h2>Users</h2>
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- User rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <button id="admin-logout-btn" class="btn">Logout</button>
+    </div>
+
+    <!-- Profile Setup -->
+    <div id="profile-setup" class="profile-setup hidden">
+        <h1>Set Up Your Profile</h1>
+        <div class="form-group">
+            <label for="nickname">Choose a Nickname</label>
+            <input type="text" id="nickname" placeholder="Enter a nickname">
+        </div>
+        <h2>Choose your avatar</h2>
+        <div class="avatar-selection">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzM0OThkYiIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMzUiIHI9IjE1IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI1LDgwYzAtMjAsMTAtMzAsMjUtMzBzMjUsMTAsMjUsMzAiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" alt="Avatar 1" class="avatar-option" data-avatar="1">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzJlY2M3MSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMzUiIHI9IjE1IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI1LDgwYzAtMjAsMTAtMzAsMjUtMzBzMjUsMTAsMjUsMzBIMjV6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="Avatar 2" class="avatar-option" data-avatar="2">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iI2U3NGMzYyIvPjxjaXJjbGUgY3g9IjM1IiBjeT0iMzUiIHI9IjEwIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNjUiIGN5PSIzNSIgcj0iMTAiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMjUsNzVjMC0yMCwxMC0zMCwyNS0zMHMyNSwxMCwyNSwzMEgyNXoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" alt="Avatar 3" class="avatar-option" data-avatar="3">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzk5NTJjYyIvPjxjaXJjbGUgY3g9IjM1IiBjeT0iNDAiIHI9IjgiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI2NSIgY3k9IjQwIiByPSI4IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTMwLDc1YzAtMTUsMTAtMjAsMjAtMjBzMjAsNSwyMCwyMEgzMHoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" alt="Avatar 4" class="avatar-option" data-avatar="4">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iI2Y1OGEyYSIvPjxjaXJjbGUgY3g9IjM1IiBjeT0iMzUiIHI9IjEwIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNjUiIGN5PSIzNSIgcj0iMTAiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMzUsNzVjMC0xMCwxMC0yMCwxNS0yMHMxNSwxMCwxNSwyMEgzNXoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" alt="Avatar 5" class="avatar-option" data-avatar="5">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzM0OThlYyIvPjxjaXJjbGUgY3g9IjM1IiBjeT0iMzgiIHI9IjEyIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iNjUiIGN5PSIzOCIgcj0iMTIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIzNSIgY3k9IjM4IiByPSI2IiBmaWxsPSIjMzMzIi8+PGNpcmNsZSBjeD0iNjUiIGN5PSIzOCIgcj0iNiIgZmlsbD0iIzMzMyIvPjxwYXRoIGQ9Ik0zMCw3MGMwLTEwLDEwLTE1LDIwLTE1czIwLDUsMjAsMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=" alt="Avatar 6" class="avatar-option" data-avatar="6">
+        </div>
+        <button id="start-game-btn" class="btn" disabled>Start Game</button>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="game-container hidden">
+        <header class="header">
+            <div class="user-info">
+                <img id="player-avatar" class="user-avatar" src="" alt="User Avatar">
+                <span id="player-name" class="user-name">Player</span>
+            </div>
+            <div class="game-stats">
+                <div class="stat">
+                    <span id="current-level" class="stat-value">1</span>
+                    <span class="stat-label">Level</span>
+                </div>
+                <div class="stat">
+                    <span id="current-score" class="stat-value">0</span>
+                    <span class="stat-label">Score</span>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu-item" id="menu-game">Game</div>
+                <div class="menu-item" id="menu-leaderboard">Leaderboard</div>
+                <div class="menu-item" id="menu-documentation">Info</div>
+                <div class="menu-item" id="menu-logout">Logout</div>
+            </div>
+        </header>
+
+        <!-- Game Content -->
+        <div id="game-content" class="container">
+            <div class="timer-container">
+                <div class="timer" id="timer">00:30</div>
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="panel">
+                    <div class="panel-title">Situations</div>
+                    <div id="situations-container">
+                        <!-- Situations will be added here dynamically -->
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-title">Cognitive Distortions</div>
+                    <div id="distortions-container">
+                        <!-- Distortions will be added here dynamically -->
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div id="leaderboard-content" class="container hidden">
+            <div class="leaderboard-container">
+                <div class="leaderboard-header">
+                    <h1 class="leaderboard-title">Global Leaderboard</h1>
+                </div>
+                <div class="leaderboard-navigation" id="level-tabs">
+                    <!-- Level tabs will be generated here -->
+                </div>
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th class="position-cell">#</th>
+                            <th>Player</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <!-- Leaderboard entries will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Documentation -->
+        <div id="documentation-content" class="container hidden">
+            <div class="documentation-container">
+                <h1 class="documentation-title">Cognitive Distortions Guide</h1>
+                <div class="distortion-list">
+                    <div class="distortion-item">
+                        <div class="distortion-name">All-or-Nothing Thinking</div>
+                        <div class="distortion-description">Seeing things in black-and-white categories. If your performance falls short of perfect, you see yourself as a total failure.</div>
+                        <div class="distortion-example">"I got a B on the test. I'm a complete failure."</div>
+                    </div>
+                    <div class="distortion-item">
+                        <div class="distortion-name">Overgeneralization</div>
+                        <div class="distortion-description">Seeing a single negative event as a never-ending pattern of defeat.</div>
+                        <div class="distortion-example">"He didn't call me back. No one will ever love me."</div>
+                    </div>
+                    <div class="distortion-item">
+                        <div class="distortion-name">Mental Filter</div>
+                        <div class="distortion-description">Picking out a single negative detail and dwelling on it exclusively.</div>
+                        <div class="distortion-example">"The meal was ruined because the dessert was overcooked."</div>
+                    </div>
+                    <div class="distortion-item">
+                        <div class="distortion-name">Disqualifying the Positive</div>
+                        <div class="distortion-description">Rejecting positive experiences by insisting they "don't count."</div>
+                        <div class="distortion-example">"That compliment doesn't count because they were just being nice."</div>
+                    </div>
