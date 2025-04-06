@@ -13,13 +13,12 @@ const TIME_DECREASE_FACTOR = 2; // seconds to decrease per level
 const MIN_TIME_LIMIT = 10; // minimum seconds allowed
 
 // Define a list of valid users (this could be fetched from a database in real-world scenarios)
-  const validUsers = [
+const validUsers = [
     { username: 'admin', password: 'parola' },
     { username: 'test1', password: 'pass1' },
     { username: 'jane_smith', password: 'mypassword456' }
-  ];
-  
-  
+];
+
 // Authentication & User Data
 let users = [{
     username: 'admin',
@@ -39,6 +38,7 @@ let unlockedLevels = 1;
 let score = 0;
 let timeLeft = DEFAULT_TIME_LIMIT;
 let timerInterval = null;
+let startTime = null;
 let situations = [];
 let distortions = [];
 let selectedSituation = null;
@@ -314,9 +314,27 @@ function updateProfileDisplay() {
     }
 }
 
-function renderLevelGrid() {
+// Load user progress from database
+async function loadUserProgress(username) {
+    try {
+        const progress = await gameDB.getProgress(username, currentLevel);
+        if (progress && progress.length > 0) {
+            // Get the highest level completed
+            const highestLevel = Math.max(...progress.map(p => p.level));
+            unlockedLevels = Math.max(highestLevel + 1, 1); // Unlock next level
+        }
+    } catch (error) {
+        console.error('Error loading user progress:', error);
+    }
+}
+
+// Update level grid with database data
+async function renderLevelGrid() {
     const levelGrid = document.getElementById('level-grid');
     levelGrid.innerHTML = '';
+    
+    const username = document.getElementById('logged-in-username').textContent;
+    await loadUserProgress(username);
     
     for (let i = 1; i <= MAX_LEVELS; i++) {
         const levelItem = document.createElement('div');
@@ -331,62 +349,63 @@ function renderLevelGrid() {
     }
 }
 
-function renderLeaderboard() {
+// Update leaderboard with database data
+async function renderLeaderboard() {
     const leaderboardBody = document.getElementById('leaderboard-body');
+    if (!leaderboardBody) return; // Exit if element not found
+    
     leaderboardBody.innerHTML = '';
     
-    // Sort by level and then by time (ascending)
-    const sortedLeaderboard = [...leaderboard].sort((a, b) => {
-        if (a.level !== b.level) {
-            return a.level - b.level;
+    try {
+        // Get all levels' leaderboard data
+        const allLevelsData = [];
+        for (let level = 1; level <= MAX_LEVELS; level++) {
+            const levelData = await gameDB.getLeaderboard(level);
+            allLevelsData.push(...levelData);
         }
-        return a.time - b.time;
-    });
-    
-    // Get the top scores for each level
-    const topScores = {};
-    sortedLeaderboard.forEach(entry => {
-        if (!topScores[entry.level] || entry.time < topScores[entry.level].time) {
-            topScores[entry.level] = entry;
-        }
-    });
-    
-    // Render top scores
-    Object.values(topScores).forEach(entry => {
-        const row = document.createElement('tr');
         
-        const levelCell = document.createElement('td');
-        levelCell.textContent = `Level ${entry.level}`;
+        // Sort by level and time
+        const sortedData = allLevelsData.sort((a, b) => {
+            if (a.level !== b.level) {
+                return a.level - b.level;
+            }
+            return a.time - b.time;
+        });
         
-        const playerCell = document.createElement('td');
-        playerCell.textContent = entry.player;
+        // Get top score for each level
+        const topScores = {};
+        sortedData.forEach(entry => {
+            if (!topScores[entry.level] || entry.time < topScores[entry.level].time) {
+                topScores[entry.level] = entry;
+            }
+        });
         
-        const timeCell = document.createElement('td');
-        timeCell.textContent = `${entry.time}s`;
-        
-        row.appendChild(levelCell);
-        row.appendChild(playerCell);
-        row.appendChild(timeCell);
-        
-        leaderboardBody.appendChild(row);
-    });
+        // Display top scores
+        Object.values(topScores).forEach(entry => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>Level ${entry.level}</td>
+                <td>${entry.username}</td>
+                <td>${entry.time}s</td>
+            `;
+            leaderboardBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error loading leaderboard:', error);
+    }
 }
 
 // Game Functions
-function startLevel(level) {
+async function startLevel(level) {
     currentLevel = level;
-    score = 0;
-    
-    // Calculate time limit based on level
-    timeLeft = Math.max(DEFAULT_TIME_LIMIT - (level - 1) * TIME_DECREASE_FACTOR, MIN_TIME_LIMIT);
-    
-    // Generate level content
-    generateLevelContent(level);
-    
-    // Update UI
     document.getElementById('current-level').textContent = level;
-    document.getElementById('time-left').textContent = timeLeft;
-    document.getElementById('score').textContent = 0;
+    
+    // Reset game state
+    score = 0;
+    document.getElementById('score').textContent = score;
+    
+    // Generate situations and distortions for this level
+    generateLevelContent(level);
     document.getElementById('total-pairs').textContent = situations.length;
     
     // Show game screen
@@ -567,25 +586,36 @@ function startTimer() {
         clearInterval(timerInterval);
     }
     
-    const timeLeftElement = document.getElementById('time-left');
-    timeLeftElement.textContent = timeLeft;
+    // Always start at 60 seconds
+    timeLeft = DEFAULT_TIME_LIMIT;
+    document.getElementById('time-left').textContent = timeLeft;
     
+    // Record start time
+    startTime = Date.now();
+    
+    // Start countdown
     timerInterval = setInterval(() => {
         timeLeft--;
-        timeLeftElement.textContent = timeLeft;
+        document.getElementById('time-left').textContent = timeLeft;
         
         if (timeLeft <= 0) {
-            endLevel(false);
+            clearInterval(timerInterval);
+            endLevel(false); // Level failed
         }
     }, 1000);
 }
 
-function endLevel(isCompleted) {
+// End level and update leaderboard
+async function endLevel(isCompleted) {
     // Clear timer
-    clearInterval(timerInterval);
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
     
     // Calculate time used
-    const timeUsed = DEFAULT_TIME_LIMIT - timeLeft;
+    const endTime = Date.now();
+    const timeUsed = Math.floor((endTime - startTime) / 1000);
     
     // Update level complete screen
     document.getElementById('completed-level').textContent = currentLevel;
@@ -600,20 +630,20 @@ function endLevel(isCompleted) {
         unlockedLevels++;
         document.getElementById('level-unlocked').classList.remove('hidden');
         document.getElementById('unlocked-level').textContent = unlockedLevels;
-        saveData();
     } else {
         document.getElementById('level-unlocked').classList.add('hidden');
     }
     
     // Update leaderboard if completed
     if (isCompleted) {
-        leaderboard.push({
-            level: currentLevel,
-            player: currentProfile.nickname,
-            time: timeUsed,
-            score: score
-        });
-        saveData();
+        try {
+            const username = document.getElementById('logged-in-username').textContent;
+            await gameDB.addToLeaderboard(username, currentLevel, score, timeUsed);
+            await gameDB.saveProgress(username, currentLevel, score, timeUsed);
+            await renderLeaderboard(); // Make sure to await this
+        } catch (error) {
+            console.error('Error updating leaderboard:', error);
+        }
     }
     
     // Show/hide next level button

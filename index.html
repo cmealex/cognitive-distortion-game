@@ -5,6 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cognitive Distortion Matcher</title>
     <link rel="stylesheet" href="therapy-game-css.css">
+    <script>
+        // Error handler to filter out extension-related errors
+        const originalConsoleError = console.error;
+        console.error = function() {
+            const args = Array.from(arguments);
+            const errorMessage = args[0];
+            
+            // List of known extension-related files to ignore
+            const ignoreFiles = [
+                'debug.js',
+                'browser-info.js',
+                'block-css-value.js',
+                'block-types.js',
+                'icon-badge-periods.js',
+                'message-types.js',
+                'storage-service.js',
+                'api.js',
+                'helpers.js',
+                'dialog.js',
+                'overlay.js',
+                'block-elements.js',
+                'doc-helpers.js',
+                'dom-changes-observer.js',
+                'rule-parser.js',
+                'doc-popup-helpers.js',
+                'doc-start.js'
+            ];
+
+            // Check if the error is from an extension
+            const isExtensionError = ignoreFiles.some(file => 
+                errorMessage && errorMessage.toString().includes(file)
+            );
+
+            if (!isExtensionError) {
+                originalConsoleError.apply(console, args);
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="container">
@@ -294,8 +332,217 @@
         </div>
     </div>
 
+    <script src="game-db.js"></script>
     <script src="therapy-game-js.js"></script>
-	
+    <script>
+        // Error handling for duplicate script loading
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            // Ignore errors from browser extensions
+            if (url && url.includes('chrome-extension://')) {
+                return true;
+            }
+            // Log other errors
+            console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo + '\nColumn: ' + columnNo + '\nError object: ' + JSON.stringify(error));
+            return false;
+        };
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                // Wait for database initialization
+                await initDB();
+                
+                // Function to show/hide screens
+                function showScreen(screenId) {
+                    document.querySelectorAll('.screen').forEach(screen => {
+                        screen.classList.add('hidden');
+                    });
+                    document.getElementById(screenId).classList.remove('hidden');
+                    
+                    // If showing level screen, update the grid and leaderboard
+                    if (screenId === 'level-screen') {
+                        renderLevelGrid();
+                        renderLeaderboard();
+                    }
+                }
+
+                // Function to update user list
+                async function updateUserList() {
+                    try {
+                        const users = await gameDB.listUsers();
+                        const credentialsList = document.getElementById('credentials-list');
+                        credentialsList.innerHTML = '';
+                        
+                        users.forEach(user => {
+                            const li = document.createElement('li');
+                            li.textContent = `Username: ${user.username} (${user.isAdmin ? 'Admin' : 'User'})`;
+                            credentialsList.appendChild(li);
+                        });
+                    } catch (error) {
+                        console.error('Error updating user list:', error);
+                    }
+                }
+
+                // Login form handling
+                document.getElementById('login-form').addEventListener('submit', async function(event) {
+                    event.preventDefault();
+                    const username = document.getElementById('username').value.trim();
+                    const password = document.getElementById('password').value.trim();
+
+                    if (!username || !password) {
+                        document.getElementById('login-error').textContent = 'Please fill in all fields.';
+                        return;
+                    }
+
+                    try {
+                        const user = await gameDB.getUser(username);
+                        if (user && user.password === password) {
+                            document.getElementById('login-error').textContent = '';
+                            document.getElementById('logged-in-username').textContent = username;
+                            document.getElementById('user-info').style.display = 'block';
+                            
+                            // Load user profile
+                            const profile = await gameDB.getProfile(username);
+                            if (profile) {
+                                document.getElementById('profile-nickname').textContent = profile.nickname;
+                                if (profile.avatar) {
+                                    const avatarElement = document.querySelector(`.avatar[data-avatar="${profile.avatar}"]`);
+                                    if (avatarElement) {
+                                        const svgContent = avatarElement.querySelector('svg').outerHTML;
+                                        document.getElementById('profile-avatar').src = 'data:image/svg+xml;base64,' + btoa(svgContent);
+                                    }
+                                }
+                            } else {
+                                // If no profile exists, show profile setup screen
+                                showScreen('profile-screen');
+                                return;
+                            }
+                            
+                            // Show appropriate screen based on user type
+                            if (user.isAdmin) {
+                                showScreen('admin-screen');
+                                updateUserList();
+                            } else {
+                                showScreen('level-screen');
+                            }
+                        } else {
+                            document.getElementById('login-error').textContent = 'Invalid username or password.';
+                        }
+                    } catch (error) {
+                        console.error('Login error:', error);
+                        document.getElementById('login-error').textContent = 'An error occurred during login.';
+                    }
+                });
+
+                // Create user form handling
+                const createUserForm = document.getElementById('create-user-form');
+                if (createUserForm) {
+                    createUserForm.addEventListener('submit', async function(event) {
+                        event.preventDefault();
+                        
+                        const username = this.querySelector('#new-username').value;
+                        const password = this.querySelector('#new-password').value;
+                        
+                        if (!username || !password) {
+                            alert('Please enter both username and password');
+                            return;
+                        }
+                        
+                        try {
+                            await gameDB.addUser(username, password);
+                            // Create a default profile for the new user
+                            await gameDB.saveProfile(username, {
+                                nickname: username,
+                                avatar: '1' // Default to first avatar
+                            });
+                            alert('User created successfully!');
+                            this.reset();
+                            updateUserList();
+                        } catch (error) {
+                            console.error('Error creating user:', error);
+                            alert(error.message || 'Error creating user. Please try again.');
+                        }
+                    });
+                }
+
+                // Logout buttons
+                document.getElementById('logout-btn')?.addEventListener('click', function() {
+                    showScreen('login-screen');
+                });
+
+                document.getElementById('admin-logout-btn')?.addEventListener('click', function() {
+                    showScreen('login-screen');
+                });
+
+                // Avatar selection
+                const avatars = document.querySelectorAll('.avatar');
+                avatars.forEach(avatar => {
+                    avatar.addEventListener('click', function() {
+                        avatars.forEach(a => a.classList.remove('selected'));
+                        this.classList.add('selected');
+                    });
+                });
+
+                // Profile saving
+                const saveProfileBtn = document.getElementById('save-profile-btn');
+                if (saveProfileBtn) {
+                    saveProfileBtn.addEventListener('click', async function() {
+                        if (!validateProfile()) return;
+                        
+                        const username = document.getElementById('logged-in-username').textContent;
+                        const nickname = document.getElementById('nickname').value;
+                        const selectedAvatar = document.querySelector('.avatar.selected');
+                        const avatarId = selectedAvatar.getAttribute('data-avatar');
+                        
+                        try {
+                            await gameDB.saveProfile(username, {
+                                nickname,
+                                avatar: avatarId
+                            });
+                            
+                            showScreen('level-screen');
+                            // Update profile display
+                            document.getElementById('profile-nickname').textContent = nickname;
+                            const avatarElement = document.querySelector(`.avatar[data-avatar="${avatarId}"]`);
+                            if (avatarElement) {
+                                const svgContent = avatarElement.querySelector('svg').outerHTML;
+                                document.getElementById('profile-avatar').src = 'data:image/svg+xml;base64,' + btoa(svgContent);
+                            }
+                        } catch (error) {
+                            console.error('Error saving profile:', error);
+                            alert('Error saving profile. Please try again.');
+                        }
+                    });
+                }
+
+                // Profile validation
+                let alertShown = false;
+                function validateProfile() {
+                    if (alertShown) return false;
+                    
+                    const nickname = document.getElementById('nickname').value;
+                    if (!nickname) {
+                        alert('Please enter a nickname');
+                        alertShown = true;
+                        setTimeout(() => { alertShown = false; }, 100);
+                        return false;
+                    }
+                    
+                    const selectedAvatar = document.querySelector('.avatar.selected');
+                    if (!selectedAvatar) {
+                        alert('Please select an avatar');
+                        alertShown = true;
+                        setTimeout(() => { alertShown = false; }, 100);
+                        return false;
+                    }
+                    
+                    return true;
+                }
+            } catch (error) {
+                console.error('Error initializing application:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        });
+    </script>
 
 <footer id="myFooter">
     <p>Pentru mai multe informații despre această pagină, intrați <a href="despre.html">aici</a>.</p>
@@ -318,169 +565,5 @@
         text-decoration: underline;
     }
 </style>
-<script>
-
-  document.getElementById('login-form').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    if (!username || !password) {
-      document.getElementById('login-error').textContent = 'Please fill in all fields.';
-      return;
-    }
-
-    // Check if the entered credentials match any valid user
-    const isValidUser = validUsers.some(user => user.username === username && user.password === password);
-
-    if (isValidUser) {
-      document.getElementById('login-error').textContent = '';
-      document.getElementById('logged-in-username').textContent = username;
-      document.getElementById('user-info').style.display = 'block';
-    } else {
-      document.getElementById('login-error').textContent = 'Invalid username or password.';
-    }
-  });
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    const avatars = document.querySelectorAll('.avatar');
-    
-    avatars.forEach(avatar => {
-        avatar.addEventListener('click', function() {
-            // Remove selected class from all avatars
-            avatars.forEach(a => a.classList.remove('selected'));
-            
-            // Add selected class to clicked avatar
-            this.classList.add('selected');
-            
-            // Store the selected avatar id
-            const selectedAvatarId = this.getAttribute('data-avatar');
-            localStorage.setItem('selectedAvatar', selectedAvatarId);
-        });
-    });
-	
-	// Get references to the form and button
-    const createUserForm = document.getElementById('create-user-form');
-    const createUserBtn = document.getElementById('create-user-btn');
-	// Remove any existing event listeners (if possible)
-    createUserForm.replaceWith(createUserForm.cloneNode(true));
-	// Get a fresh reference to the replaced form
-    const newCreateUserForm = document.getElementById('create-user-form');
-	
-	// Add a single event listener
-    newCreateUserForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Get input values directly from the form
-        const username = this.querySelector('#new-username').value;
-        const password = this.querySelector('#new-password').value;
-        
-        console.log('Form submission - Username:', username);
-        console.log('Form submission - Password:', password);
-        
-        if (!username || !password) {
-            alert('Please enter both username and password');
-            return;
-        }
-        
-        // Add user creation logic here
-        if (users.some(u => u.username === username)) {
-            alert('Username already exists');
-            return;
-        }
-        
-        users.push({
-            username,
-            password,
-            isAdmin: false
-        });
-        
-        saveData();
-        renderUserCredentials();
-        
-        // Clear form fields
-        this.querySelector('#new-username').value = '';
-        this.querySelector('#new-password').value = '';
-    });
-	
-	
-	// Now add the event listener for the save profile button
-    const saveProfileBtn = document.getElementById('save-profile-btn');
-    if (saveProfileBtn) {
-        saveProfileBtn.addEventListener('click', function() {
-            if (!validateProfile()) return;
-            
-            const nickname = document.getElementById('nickname').value;
-            localStorage.setItem('nickname', nickname);
-            document.getElementById('profile-screen').classList.add('hidden');
-            // Add any other code you need here
-        });
-    }
-	
-	// Load and display the selected avatar
-    const selectedAvatarId = localStorage.getItem('selectedAvatar');
-    if (selectedAvatarId) {
-        const avatarElement = document.querySelector(`.avatar[data-avatar="${selectedAvatarId}"]`);
-        if (avatarElement) {
-            const svgContent = avatarElement.querySelector('svg').outerHTML;
-            const profileAvatar = document.getElementById('profile-avatar');
-            profileAvatar.src = 'data:image/svg+xml;base64,' + btoa(svgContent);
-        }
-    }
-    
-    // Load and display the nickname
-    const savedNickname = localStorage.getItem('nickname');
-    if (savedNickname) {
-        document.getElementById('profile-nickname').textContent = savedNickname;
-    }
-	
-});
-
-// Instead, add this global variable and function at the top of your script:
-let alertShown = false;
-
-function validateProfile() {
-    if (alertShown) return false;
-    
-    const nickname = document.getElementById('nickname').value;
-    if (!nickname) {
-        alert('Please enter a nickname');
-        alertShown = true;
-        // Reset the flag after a short delay
-        setTimeout(() => { alertShown = false; }, 100);
-        return false;
-    }
-    
-    const selectedAvatar = document.querySelector('.avatar.selected');
-    if (!selectedAvatar) {
-        alert('Please select an avatar');
-        alertShown = true;
-        // Reset the flag after a short delay
-        setTimeout(() => { alertShown = false; }, 100);
-        return false;
-    }
-    
-    return true;
-}
-
-// Then in therapy-game-js.js, modify the event listener to use this function:
-document.getElementById('save-profile-btn').addEventListener('click', function() {
-    if (!validateProfile()) return;
-    
-    // The rest of your code...
-    const nickname = document.getElementById('nickname').value;
-    localStorage.setItem('nickname', nickname);
-    document.getElementById('profile-screen').classList.add('hidden');
-    // etc...
-});
-
-<!--
-document.getElementById('create-user-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    createUser();
-});
--->
-		</script>
 </body>
 </html>
