@@ -1,0 +1,14 @@
+{
+  "name": "catch-all-cognitive-distortions",
+  "version": "1.0.0",
+  "description": "Automated UI tests for Catch All Cognitive Distortions",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "http-server": "^14.1.1"
+  }
+}
