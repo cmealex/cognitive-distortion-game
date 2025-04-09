@@ -282,7 +282,7 @@
 			  }
 			</style>
             <div class="user-profile">
-                <img id="profile-avatar" src="" alt="Your avatar">
+                <div id="profile-avatar" class="profile-avatar"></div>
                 <span id="profile-nickname">Player</span>
             </div>
             <div class="level-container">
@@ -427,7 +427,7 @@
                                     const avatarElement = document.querySelector(`.avatar[data-avatar="${profile.avatar}"]`);
                                     if (avatarElement) {
                                         const svgContent = avatarElement.querySelector('svg').outerHTML;
-                                        document.getElementById('profile-avatar').src = 'data:image/svg+xml;base64,' + btoa(svgContent);
+                                        document.getElementById('profile-avatar').innerHTML = svgContent;
                                     }
                                 }
                             } else {
@@ -524,7 +524,7 @@
                             const avatarElement = document.querySelector(`.avatar[data-avatar="${avatarId}"]`);
                             if (avatarElement) {
                                 const svgContent = avatarElement.querySelector('svg').outerHTML;
-                                document.getElementById('profile-avatar').src = 'data:image/svg+xml;base64,' + btoa(svgContent);
+                                document.getElementById('profile-avatar').innerHTML = svgContent;
                             }
                         } catch (error) {
                             console.error('Error saving profile:', error);

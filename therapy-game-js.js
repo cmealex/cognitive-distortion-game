@@ -306,11 +306,13 @@ function updateProfileDisplay() {
     // Get the selected avatar element
     const selectedAvatar = document.querySelector(`.avatar[data-avatar="${currentProfile.avatar}"]`);
     if (selectedAvatar) {
-        // Clone the SVG content from the selected avatar
-        const avatarSvg = selectedAvatar.querySelector('svg').cloneNode(true);
-        const profileAvatarContainer = document.getElementById('profile-avatar');
-        profileAvatarContainer.innerHTML = '';
-        profileAvatarContainer.appendChild(avatarSvg);
+        // Get the SVG content from the selected avatar
+        const avatarSvg = selectedAvatar.querySelector('svg');
+        if (avatarSvg) {
+            const profileAvatarContainer = document.getElementById('profile-avatar');
+            profileAvatarContainer.innerHTML = '';
+            profileAvatarContainer.appendChild(avatarSvg.cloneNode(true));
+        }
     }
 }
 
