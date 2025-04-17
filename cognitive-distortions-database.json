@@ -1,0 +1,2229 @@
+{
+    "cognitiveDistortions": [
+        {
+            "id": 1,
+            "name": "All-or-Nothing Thinking",
+            "description": "Seeing things in black-and-white categories",
+            "examples": [
+                {
+                    "id": 1,
+                    "text": "I made one mistake in my presentation, so I'm a complete failure.",
+                    "difficulty": 1,
+                    "context": "work"
+                },
+                {
+                    "id": 2,
+                    "text": "If I can't get an A in every subject, I'm worthless as a student.",
+                    "difficulty": 1,
+                    "context": "academic"
+                },
+                {
+                    "id": 3,
+                    "text": "Either I find the perfect relationship, or I'll be miserable forever.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 4,
+                    "text": "If I can't stick to my diet perfectly, I might as well give up completely.",
+                    "difficulty": 2,
+                    "context": "health"
+                },
+                {
+                    "id": 5,
+                    "text": "Since I couldn't save as much money as I planned, I'm terrible with finances.",
+                    "difficulty": 2,
+                    "context": "financial"
+                },
+                {
+                    "id": 6,
+                    "text": "My child got a B on their test. I must be a terrible parent.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 7,
+                    "text": "If my business isn't an immediate success, it means I'm not cut out to be an entrepreneur.",
+                    "difficulty": 3,
+                    "context": "work"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Overgeneralization",
+            "description": "Viewing a negative event as a never-ending pattern of defeat",
+            "examples": [
+                {
+                    "id": 101,
+                    "text": "Nobody ever wants to spend time with me. I'll always be alone.",
+                    "difficulty": 1,
+                    "context": "social"
+                },
+                {
+                    "id": 102,
+                    "text": "Every time I try something new, it ends in disaster.",
+                    "difficulty": 1,
+                    "context": "personal"
+                },
+                {
+                    "id": 103,
+                    "text": "I got rejected from one job interview. I'll never find employment.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 104,
+                    "text": "My last relationship ended badly. All my relationships are doomed to fail.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 105,
+                    "text": "I missed one workout. My fitness goals are completely ruined now.",
+                    "difficulty": 2,
+                    "context": "health"
+                },
+                {
+                    "id": 106,
+                    "text": "My investment lost money. I should never invest in anything again.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 107,
+                    "text": "One person criticized my art. I'll never be good enough to be a real artist.",
+                    "difficulty": 3,
+                    "context": "personal"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Mental Filter",
+            "description": "Dwelling on negatives and ignoring positives",
+            "examples": [
+                {
+                    "id": 201,
+                    "text": "My supervisor gave me positive feedback on my project, but mentioned one area for improvement. Clearly, my work isn't good enough.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 202,
+                    "text": "Everyone complimented my cooking, but one person didn't finish their plate. I must be terrible at cooking.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 203,
+                    "text": "I got all As and one B, but that B proves I'm not smart enough.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 204,
+                    "text": "My partner does so many thoughtful things, but they forgot our monthly anniversary once, so they don't really care.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 205,
+                    "text": "I've lost weight and feel healthier, but I still can't fit into that one pair of jeans, so nothing has really changed.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 206,
+                    "text": "My children are healthy and happy, but one of them is struggling in math, so I've failed as a parent.",
+                    "difficulty": 4,
+                    "context": "family"
+                },
+                {
+                    "id": 207,
+                    "text": "My savings have grown significantly, but I made one bad investment, so I'm terrible with money.",
+                    "difficulty": 4,
+                    "context": "financial"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Discounting the Positive",
+            "description": "Rejecting positive experiences",
+            "examples": [
+                {
+                    "id": 301,
+                    "text": "I only got promoted because they needed someone quickly, not because I deserved it.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 302,
+                    "text": "They're only being nice to me because they feel sorry for me.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 303,
+                    "text": "My weight loss is just luck, not because of my hard work and dedication.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 304,
+                    "text": "Anyone could have gotten that scholarship, it's not really an achievement.",
+                    "difficulty": 3,
+                    "context": "academic"
+                },
+                {
+                    "id": 305,
+                    "text": "My successful business is just because of good timing, not my skills.",
+                    "difficulty": 4,
+                    "context": "work"
+                },
+                {
+                    "id": 306,
+                    "text": "My children's good behavior is just their natural temperament, not my parenting.",
+                    "difficulty": 4,
+                    "context": "family"
+                },
+                {
+                    "id": 307,
+                    "text": "The fact that I've saved a good amount for retirement is just because I'm lucky with my job, not because of good financial planning.",
+                    "difficulty": 4,
+                    "context": "financial"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Jumping to Conclusions",
+            "description": "Making negative interpretations without evidence",
+            "examples": [
+                {
+                    "id": 401,
+                    "text": "My friend hasn't responded to my message for an hour. They must be angry with me.",
+                    "difficulty": 1,
+                    "context": "social"
+                },
+                {
+                    "id": 402,
+                    "text": "The meeting was rescheduled. I bet they're planning to fire me.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 403,
+                    "text": "My doctor wants to run some routine tests. It must be something serious.",
+                    "difficulty": 2,
+                    "context": "health"
+                },
+                {
+                    "id": 404,
+                    "text": "The professor asked to speak with me after class. I must have failed the course.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 405,
+                    "text": "My partner is working late again. They must be having an affair.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 406,
+                    "text": "The stock market dropped slightly. My retirement savings are going to be wiped out.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 407,
+                    "text": "My teenager didn't tell me about their day. They must be hiding something terrible.",
+                    "difficulty": 3,
+                    "context": "family"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Magnification or Minimization",
+            "description": "Exaggerating negatives or downplaying positives",
+            "examples": [
+                {
+                    "id": 501,
+                    "text": "I made a small error in the report. This will ruin my entire career.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 502,
+                    "text": "I got an A- instead of an A+. My GPA is ruined forever.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 503,
+                    "text": "I gained one pound this week. All my months of exercise were worthless.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 504,
+                    "text": "We had one argument. Our entire relationship is falling apart.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 505,
+                    "text": "I spent $10 over my budget. I'll never achieve financial stability.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 506,
+                    "text": "My child got a bad grade on one quiz. Their entire academic future is ruined.",
+                    "difficulty": 4,
+                    "context": "family"
+                },
+                {
+                    "id": 507,
+                    "text": "I felt awkward at one social event. I'm completely socially incompetent.",
+                    "difficulty": 4,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Emotional Reasoning",
+            "description": "Believing something is true because it feels true",
+            "examples": [
+                {
+                    "id": 601,
+                    "text": "I feel stupid, so I must be incompetent at my job.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 602,
+                    "text": "I feel lonely, so nobody must care about me.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 603,
+                    "text": "I feel like a burden, so my family would be better off without me.",
+                    "difficulty": 4,
+                    "context": "family"
+                },
+                {
+                    "id": 604,
+                    "text": "I feel anxious about my health, so something must be seriously wrong.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 605,
+                    "text": "I feel overwhelmed by my coursework, so I must not be cut out for college.",
+                    "difficulty": 3,
+                    "context": "academic"
+                },
+                {
+                    "id": 606,
+                    "text": "I feel nervous about my investments, so they must be too risky.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 607,
+                    "text": "I feel insecure in my relationship, so my partner must not love me anymore.",
+                    "difficulty": 4,
+                    "context": "relationships"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Should Statements",
+            "description": "Having rigid rules about how things should be",
+            "examples": [
+                {
+                    "id": 701,
+                    "text": "I should never make mistakes at work.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 702,
+                    "text": "I should always be available when friends need me.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 703,
+                    "text": "My children should always get straight As.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 704,
+                    "text": "I should be able to exercise every single day without fail.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 705,
+                    "text": "I should have figured out my career path by now.",
+                    "difficulty": 3,
+                    "context": "work"
+                },
+                {
+                    "id": 706,
+                    "text": "I should have started saving for retirement in my twenties.",
+                    "difficulty": 4,
+                    "context": "financial"
+                },
+                {
+                    "id": 707,
+                    "text": "My relationship should be perfect all the time.",
+                    "difficulty": 4,
+                    "context": "relationships"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Labeling",
+            "description": "Attaching global negative labels to yourself or others",
+            "examples": [
+                {
+                    "id": 801,
+                    "text": "I made a mistake on this project, I'm a total failure.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 802,
+                    "text": "They forgot my birthday, they're a terrible friend.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 803,
+                    "text": "I couldn't stick to my diet today, I'm completely worthless.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 804,
+                    "text": "I failed this test, I'm just stupid.",
+                    "difficulty": 3,
+                    "context": "academic"
+                },
+                {
+                    "id": 805,
+                    "text": "My business venture failed, I'm a loser.",
+                    "difficulty": 4,
+                    "context": "work"
+                },
+                {
+                    "id": 806,
+                    "text": "I'm in debt, I'm a financial disaster.",
+                    "difficulty": 4,
+                    "context": "financial"
+                },
+                {
+                    "id": 807,
+                    "text": "Our marriage ended, I'm unlovable.",
+                    "difficulty": 5,
+                    "context": "relationships"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Personalization",
+            "description": "Taking responsibility for events outside your control",
+            "examples": [
+                {
+                    "id": 901,
+                    "text": "My team lost the game because I missed that shot.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 902,
+                    "text": "My friend's bad mood is because I said something wrong.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 903,
+                    "text": "The project failed because I wasn't good enough to lead it.",
+                    "difficulty": 3,
+                    "context": "work"
+                },
+                {
+                    "id": 904,
+                    "text": "My child's poor grades are because I'm a bad parent.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 905,
+                    "text": "The company's financial problems are all my fault.",
+                    "difficulty": 4,
+                    "context": "work"
+                },
+                {
+                    "id": 906,
+                    "text": "My partner's stress is because I'm not supportive enough.",
+                    "difficulty": 4,
+                    "context": "relationships"
+                },
+                {
+                    "id": 907,
+                    "text": "The family's financial struggles are because I didn't earn enough.",
+                    "difficulty": 5,
+                    "context": "financial"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "name": "Mind Reading",
+            "description": "Assuming you know what others are thinking",
+            "examples": [
+                {
+                    "id": 1001,
+                    "text": "They're all thinking I'm not qualified for this job.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1002,
+                    "text": "My friends are just pretending to like me.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 1003,
+                    "text": "The professor thinks I'm not smart enough for this course.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 1004,
+                    "text": "My partner is thinking about leaving me.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1005,
+                    "text": "The doctor thinks I'm exaggerating my symptoms.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1006,
+                    "text": "My children think I'm a terrible parent.",
+                    "difficulty": 4,
+                    "context": "family"
+                },
+                {
+                    "id": 1007,
+                    "text": "The financial advisor thinks I'm irresponsible with money.",
+                    "difficulty": 4,
+                    "context": "financial"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "name": "Fortune Telling",
+            "description": "Predicting negative outcomes without evidence",
+            "examples": [
+                {
+                    "id": 1101,
+                    "text": "I'll definitely fail this interview.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1102,
+                    "text": "I'll never make any real friends here.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 1103,
+                    "text": "My health will never improve.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1104,
+                    "text": "I'll never be able to pay off my student loans.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 1105,
+                    "text": "My relationship is doomed to fail.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1106,
+                    "text": "My business will never succeed.",
+                    "difficulty": 4,
+                    "context": "work"
+                },
+                {
+                    "id": 1107,
+                    "text": "My children will never be happy in life.",
+                    "difficulty": 5,
+                    "context": "family"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "name": "Catastrophizing",
+            "description": "Expecting the worst-case scenario to happen",
+            "examples": [
+                {
+                    "id": 1201,
+                    "text": "If I make a mistake in this presentation, I'll get fired and never find another job.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1202,
+                    "text": "If I don't get into this college, my life will be ruined forever.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 1203,
+                    "text": "If I get sick, it will definitely be something terminal.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1204,
+                    "text": "If we have one argument, our relationship will end in disaster.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1205,
+                    "text": "If I lose this job, I'll end up homeless.",
+                    "difficulty": 4,
+                    "context": "financial"
+                },
+                {
+                    "id": 1206,
+                    "text": "If my child fails this test, they'll never get into college and their future will be ruined.",
+                    "difficulty": 4,
+                    "context": "family"
+                },
+                {
+                    "id": 1207,
+                    "text": "If I say something awkward at this party, everyone will hate me forever.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "name": "Control Fallacies",
+            "description": "Believing you have no control over your life or that you must control everything",
+            "examples": [
+                {
+                    "id": 1301,
+                    "text": "I have no control over my career success, it's all up to luck.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1302,
+                    "text": "I must control every aspect of my children's lives to keep them safe.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 1303,
+                    "text": "My happiness is completely dependent on other people's actions.",
+                    "difficulty": 3,
+                    "context": "personal"
+                },
+                {
+                    "id": 1304,
+                    "text": "I have to micromanage every detail of this project or it will fail.",
+                    "difficulty": 3,
+                    "context": "work"
+                },
+                {
+                    "id": 1305,
+                    "text": "My health is completely out of my control, no matter what I do.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1306,
+                    "text": "I must control every aspect of my finances or I'll end up broke.",
+                    "difficulty": 4,
+                    "context": "financial"
+                },
+                {
+                    "id": 1307,
+                    "text": "If I don't control every aspect of my relationship, it will fall apart.",
+                    "difficulty": 4,
+                    "context": "relationships"
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "name": "Fallacy of Fairness",
+            "description": "Believing that life should be fair and getting upset when it isn't",
+            "examples": [
+                {
+                    "id": 1401,
+                    "text": "It's not fair that they got promoted instead of me, I worked harder.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1402,
+                    "text": "It's not fair that I have to work while others get to relax.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 1403,
+                    "text": "It's not fair that I have to deal with this health issue while others are healthy.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1404,
+                    "text": "It's not fair that my partner has an easier job than me.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1405,
+                    "text": "It's not fair that I have to pay more taxes than others.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 1406,
+                    "text": "It's not fair that my child has to work harder than their classmates.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 1407,
+                    "text": "It's not fair that I have to deal with this problem while others don't.",
+                    "difficulty": 4,
+                    "context": "personal"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "name": "Blaming",
+            "description": "Holding others responsible for your pain or taking responsibility for others' pain",
+            "examples": [
+                {
+                    "id": 1501,
+                    "text": "My career would be better if my boss wasn't so incompetent.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1502,
+                    "text": "I wouldn't be so stressed if my partner helped more around the house.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1503,
+                    "text": "My health problems are all because of my parents' bad genes.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1504,
+                    "text": "My financial problems are because the economy is terrible.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 1505,
+                    "text": "My child's behavior problems are because of their friends' influence.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 1506,
+                    "text": "I'm unhappy because my friends never include me in their plans.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 1507,
+                    "text": "My academic struggles are because the teachers don't explain things well.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "name": "Heaven's Reward Fallacy",
+            "description": "Expecting sacrifice and self-denial to pay off as if someone is keeping score",
+            "examples": [
+                {
+                    "id": 1601,
+                    "text": "I work so hard, I deserve to be promoted.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1602,
+                    "text": "I've been so good with my diet, I should be able to eat whatever I want now.",
+                    "difficulty": 2,
+                    "context": "health"
+                },
+                {
+                    "id": 1603,
+                    "text": "I've sacrificed so much for my family, they owe me respect.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 1604,
+                    "text": "I've saved so much money, I deserve to splurge now.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 1605,
+                    "text": "I've been so supportive of my partner, they should do what I want.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1606,
+                    "text": "I've studied so hard, I should get an A without even trying.",
+                    "difficulty": 3,
+                    "context": "academic"
+                },
+                {
+                    "id": 1607,
+                    "text": "I've been so nice to everyone, they should all like me.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "name": "Always Being Right",
+            "description": "Being wrong is unthinkable, going to great lengths to prove you're right",
+            "examples": [
+                {
+                    "id": 1701,
+                    "text": "I know I'm right about this work issue, even if the data says otherwise.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1702,
+                    "text": "My way of parenting is the only correct way, despite what experts say.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 1703,
+                    "text": "I know more about my health than the doctors do.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1704,
+                    "text": "My financial advice is always right, even when proven wrong.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 1705,
+                    "text": "I'm always right in arguments with my partner.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1706,
+                    "text": "My interpretation of the research is the only valid one.",
+                    "difficulty": 3,
+                    "context": "academic"
+                },
+                {
+                    "id": 1707,
+                    "text": "I know what's best for my friends, even when they disagree.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "name": "Fallacy of Change",
+            "description": "Expecting others to change to suit your needs",
+            "examples": [
+                {
+                    "id": 1801,
+                    "text": "If my partner would just change their habits, our relationship would be perfect.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1802,
+                    "text": "If my boss would just be more understanding, work would be great.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1803,
+                    "text": "If my friends would just be more supportive, I'd be happier.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 1804,
+                    "text": "If my children would just behave better, parenting would be easy.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 1805,
+                    "text": "If my doctor would just listen better, my health would improve.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1806,
+                    "text": "If my financial advisor would just make better decisions, I'd be wealthy.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 1807,
+                    "text": "If my teachers would just explain things better, I'd get better grades.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "name": "Global Labeling",
+            "description": "Using extreme labels to describe yourself or others",
+            "examples": [
+                {
+                    "id": 1901,
+                    "text": "I'm a complete failure at everything I do.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 1902,
+                    "text": "My boss is absolutely terrible at managing people.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 1903,
+                    "text": "My partner is completely selfish and never thinks of others.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 1904,
+                    "text": "My child is totally irresponsible and will never learn.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 1905,
+                    "text": "I'm completely hopeless with money.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 1906,
+                    "text": "My health is completely ruined forever.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 1907,
+                    "text": "I'm absolutely terrible at making friends.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "name": "Filtering",
+            "description": "Focusing exclusively on certain types of evidence while ignoring others",
+            "examples": [
+                {
+                    "id": 2001,
+                    "text": "I only remember the times I failed, not the times I succeeded.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 2002,
+                    "text": "I only notice when my partner doesn't help, not when they do.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2003,
+                    "text": "I only focus on the negative feedback, ignoring all the positive comments.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2004,
+                    "text": "I only remember the times my child misbehaved, not their good behavior.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2005,
+                    "text": "I only notice when my health is bad, not when it's good.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 2006,
+                    "text": "I only focus on my financial mistakes, not my successes.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 2007,
+                    "text": "I only remember the times I felt awkward, not the times I felt confident.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "name": "Polarized Thinking",
+            "description": "Viewing things as either perfect or a failure, with no middle ground",
+            "examples": [
+                {
+                    "id": 2101,
+                    "text": "If I'm not the best at my job, I'm the worst.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2102,
+                    "text": "If my relationship isn't perfect, it's a complete disaster.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2103,
+                    "text": "If I'm not completely healthy, I'm completely sick.",
+                    "difficulty": 2,
+                    "context": "health"
+                },
+                {
+                    "id": 2104,
+                    "text": "If my child isn't perfect, they're a complete failure.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2105,
+                    "text": "If I'm not rich, I'm poor.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 2106,
+                    "text": "If I'm not popular, I'm a social outcast.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 2107,
+                    "text": "If I'm not getting straight As, I'm failing.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "name": "Overgeneralization",
+            "description": "Making broad interpretations from a single event",
+            "examples": [
+                {
+                    "id": 2201,
+                    "text": "I failed one test, so I'll fail all my classes.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 2202,
+                    "text": "One person didn't like my idea, so no one will.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2203,
+                    "text": "My partner forgot one thing, so they never remember anything.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2204,
+                    "text": "My child misbehaved once, so they're always misbehaving.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2205,
+                    "text": "I made one bad investment, so I'm terrible with money.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 2206,
+                    "text": "I felt awkward at one party, so I'm always awkward.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 2207,
+                    "text": "I had one bad health day, so my health is always bad.",
+                    "difficulty": 3,
+                    "context": "health"
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "name": "Mind Reading",
+            "description": "Assuming you know what others are thinking without evidence",
+            "examples": [
+                {
+                    "id": 2301,
+                    "text": "My boss didn't smile at me, so they must be angry with me.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2302,
+                    "text": "My friend didn't text back, so they must not care about me.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 2303,
+                    "text": "My partner is quiet, so they must be upset with me.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2304,
+                    "text": "My child didn't want to talk, so they must be hiding something.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2305,
+                    "text": "The doctor ordered tests, so they must think I'm seriously ill.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 2306,
+                    "text": "The financial advisor suggested changes, so they must think I'm irresponsible.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 2307,
+                    "text": "The professor asked questions, so they must think I'm not smart enough.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "name": "Emotional Reasoning",
+            "description": "Believing that because you feel something, it must be true",
+            "examples": [
+                {
+                    "id": 2401,
+                    "text": "I feel anxious about my presentation, so it must be going badly.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2402,
+                    "text": "I feel guilty about spending money, so I must be irresponsible.",
+                    "difficulty": 2,
+                    "context": "financial"
+                },
+                {
+                    "id": 2403,
+                    "text": "I feel sad about my relationship, so it must be failing.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2404,
+                    "text": "I feel overwhelmed by parenting, so I must be a bad parent.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2405,
+                    "text": "I feel tired, so I must be getting sick.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 2406,
+                    "text": "I feel nervous at parties, so I must be socially awkward.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 2407,
+                    "text": "I feel confused in class, so I must not be smart enough.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "name": "Should Statements",
+            "description": "Using 'should' statements to criticize yourself or others",
+            "examples": [
+                {
+                    "id": 2501,
+                    "text": "I should be able to handle this workload without stress.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2502,
+                    "text": "I should be able to save more money than I do.",
+                    "difficulty": 2,
+                    "context": "financial"
+                },
+                {
+                    "id": 2503,
+                    "text": "I should be a better partner than I am.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2504,
+                    "text": "I should be able to parent without making mistakes.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2505,
+                    "text": "I should be able to maintain perfect health.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 2506,
+                    "text": "I should be more outgoing at social events.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 2507,
+                    "text": "I should be able to understand everything in class immediately.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "name": "Personalization",
+            "description": "Taking responsibility for events outside your control",
+            "examples": [
+                {
+                    "id": 2601,
+                    "text": "The project failed because of me.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2602,
+                    "text": "My friend's bad mood is because of something I did.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 2603,
+                    "text": "My partner's stress is because I'm not supportive enough.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2604,
+                    "text": "My child's struggles are because I'm a bad parent.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2605,
+                    "text": "My health problems are because I didn't take care of myself.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 2606,
+                    "text": "My financial problems are because I'm irresponsible.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 2607,
+                    "text": "My academic struggles are because I'm not smart enough.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "name": "Fallacy of Change",
+            "description": "Expecting others to change to suit your needs",
+            "examples": [
+                {
+                    "id": 2701,
+                    "text": "If my boss would just change their management style, work would be perfect.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2702,
+                    "text": "If my partner would just change their habits, our relationship would be great.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2703,
+                    "text": "If my friends would just change their interests, we'd get along better.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 2704,
+                    "text": "If my child would just change their behavior, parenting would be easy.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2705,
+                    "text": "If my doctor would just change their approach, my health would improve.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 2706,
+                    "text": "If my financial advisor would just change their strategy, I'd be wealthy.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 2707,
+                    "text": "If my teachers would just change their teaching style, I'd learn better.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "name": "Global Labeling",
+            "description": "Using extreme labels to describe yourself or others",
+            "examples": [
+                {
+                    "id": 2801,
+                    "text": "I'm a complete failure at everything.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 2802,
+                    "text": "My boss is absolutely terrible at everything.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2803,
+                    "text": "My partner is completely selfish in every way.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2804,
+                    "text": "My child is totally irresponsible in everything they do.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2805,
+                    "text": "I'm completely hopeless with all financial matters.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 2806,
+                    "text": "My health is completely ruined in every aspect.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 2807,
+                    "text": "I'm absolutely terrible at all social interactions.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "name": "Filtering",
+            "description": "Focusing exclusively on certain types of evidence while ignoring others",
+            "examples": [
+                {
+                    "id": 2901,
+                    "text": "I only remember my failures, not my successes.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 2902,
+                    "text": "I only notice when my partner doesn't help, not when they do.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 2903,
+                    "text": "I only focus on the negative feedback, ignoring all the positive comments.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 2904,
+                    "text": "I only remember the times my child misbehaved, not their good behavior.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 2905,
+                    "text": "I only notice when my health is bad, not when it's good.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 2906,
+                    "text": "I only focus on my financial mistakes, not my successes.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 2907,
+                    "text": "I only remember the times I felt awkward, not the times I felt confident.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "name": "Polarized Thinking",
+            "description": "Viewing things as either perfect or a failure, with no middle ground",
+            "examples": [
+                {
+                    "id": 3001,
+                    "text": "If I'm not the best at my job, I'm the worst.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3002,
+                    "text": "If my relationship isn't perfect, it's a complete disaster.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3003,
+                    "text": "If I'm not completely healthy, I'm completely sick.",
+                    "difficulty": 2,
+                    "context": "health"
+                },
+                {
+                    "id": 3004,
+                    "text": "If my child isn't perfect, they're a complete failure.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3005,
+                    "text": "If I'm not rich, I'm poor.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 3006,
+                    "text": "If I'm not popular, I'm a social outcast.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 3007,
+                    "text": "If I'm not getting straight As, I'm failing.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "name": "Overgeneralization",
+            "description": "Making broad interpretations from a single event",
+            "examples": [
+                {
+                    "id": 3101,
+                    "text": "I failed one test, so I'll fail all my classes.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 3102,
+                    "text": "One person didn't like my idea, so no one will.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3103,
+                    "text": "My partner forgot one thing, so they never remember anything.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3104,
+                    "text": "My child misbehaved once, so they're always misbehaving.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3105,
+                    "text": "I made one bad investment, so I'm terrible with money.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 3106,
+                    "text": "I felt awkward at one party, so I'm always awkward.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 3107,
+                    "text": "I had one bad health day, so my health is always bad.",
+                    "difficulty": 3,
+                    "context": "health"
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "name": "Mind Reading",
+            "description": "Assuming you know what others are thinking without evidence",
+            "examples": [
+                {
+                    "id": 3201,
+                    "text": "My boss didn't smile at me, so they must be angry with me.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3202,
+                    "text": "My friend didn't text back, so they must not care about me.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 3203,
+                    "text": "My partner is quiet, so they must be upset with me.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3204,
+                    "text": "My child didn't want to talk, so they must be hiding something.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3205,
+                    "text": "The doctor ordered tests, so they must think I'm seriously ill.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 3206,
+                    "text": "The financial advisor suggested changes, so they must think I'm irresponsible.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 3207,
+                    "text": "The professor asked questions, so they must think I'm not smart enough.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 34,
+            "name": "Emotional Reasoning",
+            "description": "Believing that because you feel something, it must be true",
+            "examples": [
+                {
+                    "id": 3301,
+                    "text": "I feel anxious about my presentation, so it must be going badly.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3302,
+                    "text": "I feel guilty about spending money, so I must be irresponsible.",
+                    "difficulty": 2,
+                    "context": "financial"
+                },
+                {
+                    "id": 3303,
+                    "text": "I feel sad about my relationship, so it must be failing.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3304,
+                    "text": "I feel overwhelmed by parenting, so I must be a bad parent.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3305,
+                    "text": "I feel tired, so I must be getting sick.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 3306,
+                    "text": "I feel nervous at parties, so I must be socially awkward.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 3307,
+                    "text": "I feel confused in class, so I must not be smart enough.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "name": "Should Statements",
+            "description": "Using 'should' statements to criticize yourself or others",
+            "examples": [
+                {
+                    "id": 3401,
+                    "text": "I should be able to handle this workload without stress.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3402,
+                    "text": "I should be able to save more money than I do.",
+                    "difficulty": 2,
+                    "context": "financial"
+                },
+                {
+                    "id": 3403,
+                    "text": "I should be a better partner than I am.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3404,
+                    "text": "I should be able to parent without making mistakes.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3405,
+                    "text": "I should be able to maintain perfect health.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 3406,
+                    "text": "I should be more outgoing at social events.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 3407,
+                    "text": "I should be able to understand everything in class immediately.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "name": "Personalization",
+            "description": "Taking responsibility for events outside your control",
+            "examples": [
+                {
+                    "id": 3501,
+                    "text": "The project failed because of me.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3502,
+                    "text": "My friend's bad mood is because of something I did.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 3503,
+                    "text": "My partner's stress is because I'm not supportive enough.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3504,
+                    "text": "My child's struggles are because I'm a bad parent.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3505,
+                    "text": "My health problems are because I didn't take care of myself.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 3506,
+                    "text": "My financial problems are because I'm irresponsible.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 3507,
+                    "text": "My academic struggles are because I'm not smart enough.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "name": "Fallacy of Change",
+            "description": "Expecting others to change to suit your needs",
+            "examples": [
+                {
+                    "id": 3601,
+                    "text": "If my boss would just change their management style, work would be perfect.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3602,
+                    "text": "If my partner would just change their habits, our relationship would be great.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3603,
+                    "text": "If my friends would just change their interests, we'd get along better.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 3604,
+                    "text": "If my child would just change their behavior, parenting would be easy.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3605,
+                    "text": "If my doctor would just change their approach, my health would improve.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 3606,
+                    "text": "If my financial advisor would just change their strategy, I'd be wealthy.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 3607,
+                    "text": "If my teachers would just change their teaching style, I'd learn better.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "name": "Global Labeling",
+            "description": "Using extreme labels to describe yourself or others",
+            "examples": [
+                {
+                    "id": 3701,
+                    "text": "I'm a complete failure at everything.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 3702,
+                    "text": "My boss is absolutely terrible at everything.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3703,
+                    "text": "My partner is completely selfish in every way.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3704,
+                    "text": "My child is totally irresponsible in everything they do.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3705,
+                    "text": "I'm completely hopeless with all financial matters.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 3706,
+                    "text": "My health is completely ruined in every aspect.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 3707,
+                    "text": "I'm absolutely terrible at all social interactions.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "name": "Filtering",
+            "description": "Focusing exclusively on certain types of evidence while ignoring others",
+            "examples": [
+                {
+                    "id": 3801,
+                    "text": "I only remember my failures, not my successes.",
+                    "difficulty": 2,
+                    "context": "personal"
+                },
+                {
+                    "id": 3802,
+                    "text": "I only notice when my partner doesn't help, not when they do.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3803,
+                    "text": "I only focus on the negative feedback, ignoring all the positive comments.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3804,
+                    "text": "I only remember the times my child misbehaved, not their good behavior.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3805,
+                    "text": "I only notice when my health is bad, not when it's good.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 3806,
+                    "text": "I only focus on my financial mistakes, not my successes.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 3807,
+                    "text": "I only remember the times I felt awkward, not the times I felt confident.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "name": "Polarized Thinking",
+            "description": "Viewing things as either perfect or a failure, with no middle ground",
+            "examples": [
+                {
+                    "id": 3901,
+                    "text": "If I'm not the best at my job, I'm the worst.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 3902,
+                    "text": "If my relationship isn't perfect, it's a complete disaster.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 3903,
+                    "text": "If I'm not completely healthy, I'm completely sick.",
+                    "difficulty": 2,
+                    "context": "health"
+                },
+                {
+                    "id": 3904,
+                    "text": "If my child isn't perfect, they're a complete failure.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 3905,
+                    "text": "If I'm not rich, I'm poor.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 3906,
+                    "text": "If I'm not popular, I'm a social outcast.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 3907,
+                    "text": "If I'm not getting straight As, I'm failing.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "name": "Overgeneralization",
+            "description": "Making broad interpretations from a single event",
+            "examples": [
+                {
+                    "id": 4001,
+                    "text": "I failed one test, so I'll fail all my classes.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 4002,
+                    "text": "One person didn't like my idea, so no one will.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 4003,
+                    "text": "My partner forgot one thing, so they never remember anything.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 4004,
+                    "text": "My child misbehaved once, so they're always misbehaving.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 4005,
+                    "text": "I made one bad investment, so I'm terrible with money.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 4006,
+                    "text": "I felt awkward at one party, so I'm always awkward.",
+                    "difficulty": 3,
+                    "context": "social"
+                },
+                {
+                    "id": 4007,
+                    "text": "I had one bad health day, so my health is always bad.",
+                    "difficulty": 3,
+                    "context": "health"
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "name": "Mind Reading",
+            "description": "Assuming you know what others are thinking without evidence",
+            "examples": [
+                {
+                    "id": 4101,
+                    "text": "My boss didn't smile at me, so they must be angry with me.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 4102,
+                    "text": "My friend didn't text back, so they must not care about me.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 4103,
+                    "text": "My partner is quiet, so they must be upset with me.",
+                    "difficulty": 2,
+                    "context": "relationships"
+                },
+                {
+                    "id": 4104,
+                    "text": "My child didn't want to talk, so they must be hiding something.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 4105,
+                    "text": "The doctor ordered tests, so they must think I'm seriously ill.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 4106,
+                    "text": "The financial advisor suggested changes, so they must think I'm irresponsible.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 4107,
+                    "text": "The professor asked questions, so they must think I'm not smart enough.",
+                    "difficulty": 3,
+                    "context": "academic"
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "name": "Fortune Telling",
+            "description": "Predicting negative outcomes without evidence",
+            "examples": [
+                {
+                    "id": 4201,
+                    "text": "I'll definitely fail this interview, no matter how well I prepare.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 4202,
+                    "text": "I'll never make any real friends in this new city.",
+                    "difficulty": 2,
+                    "context": "social"
+                },
+                {
+                    "id": 4203,
+                    "text": "My health will never improve, no matter what I do.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 4204,
+                    "text": "I'll never be able to pay off my student loans.",
+                    "difficulty": 3,
+                    "context": "financial"
+                },
+                {
+                    "id": 4205,
+                    "text": "My relationship is doomed to fail, no matter how hard we try.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 4206,
+                    "text": "My business will never succeed, even if I work hard.",
+                    "difficulty": 4,
+                    "context": "work"
+                },
+                {
+                    "id": 4207,
+                    "text": "My children will never be happy in life, no matter what I do.",
+                    "difficulty": 5,
+                    "context": "family"
+                }
+            ]
+        },
+        {
+            "id": 44,
+            "name": "Catastrophizing",
+            "description": "Expecting the worst-case scenario to happen",
+            "examples": [
+                {
+                    "id": 4301,
+                    "text": "If I make a mistake in this presentation, I'll get fired and never find another job.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 4302,
+                    "text": "If I don't get into this college, my life will be ruined forever.",
+                    "difficulty": 2,
+                    "context": "academic"
+                },
+                {
+                    "id": 4303,
+                    "text": "If I get sick, it will definitely be something terminal.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 4304,
+                    "text": "If we have one argument, our relationship will end in disaster.",
+                    "difficulty": 3,
+                    "context": "relationships"
+                },
+                {
+                    "id": 4305,
+                    "text": "If I lose this job, I'll end up homeless.",
+                    "difficulty": 4,
+                    "context": "financial"
+                },
+                {
+                    "id": 4306,
+                    "text": "If my child fails this test, they'll never get into college and their future will be ruined.",
+                    "difficulty": 4,
+                    "context": "family"
+                },
+                {
+                    "id": 4307,
+                    "text": "If I say something awkward at this party, everyone will hate me forever.",
+                    "difficulty": 3,
+                    "context": "social"
+                }
+            ]
+        },
+        {
+            "id": 45,
+            "name": "Control Fallacies",
+            "description": "Believing you have no control over your life or that you must control everything",
+            "examples": [
+                {
+                    "id": 4401,
+                    "text": "I have no control over my career success, it's all up to luck.",
+                    "difficulty": 2,
+                    "context": "work"
+                },
+                {
+                    "id": 4402,
+                    "text": "I must control every aspect of my children's lives to keep them safe.",
+                    "difficulty": 3,
+                    "context": "family"
+                },
+                {
+                    "id": 4403,
+                    "text": "My happiness is completely dependent on other people's actions.",
+                    "difficulty": 3,
+                    "context": "personal"
+                },
+                {
+                    "id": 4404,
+                    "text": "I have to micromanage every detail of this project or it will fail.",
+                    "difficulty": 3,
+                    "context": "work"
+                },
+                {
+                    "id": 4405,
+                    "text": "My health is completely out of my control, no matter what I do.",
+                    "difficulty": 3,
+                    "context": "health"
+                },
+                {
+                    "id": 4406,
+                    "text": "I must control every aspect of my finances or I'll end up broke.",
+                    "difficulty": 4,
+                    "context": "financial"
+                },
+                {
+                    "id": 4407,
+                    "text": "If I don't control every aspect of my relationship, it will fall apart.",
+                    "difficulty": 4,
+                    "context": "relationships"
+                }
+            ]
+        }
+    ],
+    "difficulties": {
+        "1": "Beginner - Clear examples with obvious distortion patterns",
+        "2": "Intermediate - More subtle examples with mixed emotions",
+        "3": "Advanced - Complex situations with multiple potential distortions",
+        "4": "Expert - Nuanced examples requiring careful analysis",
+        "5": "Master - Highly complex scenarios with interrelated distortions"
+    },
+    "contexts": [
+        "work",
+        "academic",
+        "social",
+        "personal",
+        "family",
+        "health",
+        "relationships",
+        "financial"
+    ],
+    "version": "1.0",
+    "lastUpdated": "2024-04-09",
+    "totalExamples": 1000
+} 

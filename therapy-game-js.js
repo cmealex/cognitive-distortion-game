@@ -45,35 +45,123 @@ let selectedSituation = null;
 let leaderboard = [];
 
 // Cognitive Distortions Database
-const cognitiveDistortions = [
-    { id: 1, name: "All-or-Nothing Thinking", description: "Seeing things in black-and-white categories" },
-    { id: 2, name: "Overgeneralization", description: "Viewing a negative event as a never-ending pattern of defeat" },
-    { id: 3, name: "Mental Filter", description: "Dwelling on negatives and ignoring positives" },
-    { id: 4, name: "Discounting the Positive", description: "Rejecting positive experiences" },
-    { id: 5, name: "Jumping to Conclusions", description: "Making negative interpretations without evidence" },
-    { id: 6, name: "Magnification or Minimization", description: "Exaggerating negatives or minimizing positives" },
-    { id: 7, name: "Emotional Reasoning", description: "Believing something must be true because you feel it strongly" },
-    { id: 8, name: "Should Statements", description: "Having rigid rules about how you or others should behave" },
-    { id: 9, name: "Labeling", description: "Attaching a negative label to yourself or others instead of describing behavior" },
-    { id: 10, name: "Personalization", description: "Seeing yourself as the cause of external negative events" }
-];
+let cognitiveDistortions = [];
+let baseSituations = [];
 
-// Situation Database - Base situations that will be modified based on level
-const baseSituations = [
-    { id: 1, text: "I failed my exam. I'll never be successful in anything.", distortionId: 2 },
-    { id: 2, text: "My friend didn't text me back. They must hate me now.", distortionId: 5 },
-    { id: 3, text: "I made a mistake at work. I'm completely incompetent.", distortionId: 1 },
-    { id: 4, text: "She criticized one part of my presentation. The whole thing was a disaster.", distortionId: 3 },
-    { id: 5, text: "I should always make everyone happy. If someone is upset, it's my fault.", distortionId: 10 },
-    { id: 6, text: "My boss complimented my work, but they were just being nice. It wasn't really good.", distortionId: 4 },
-    { id: 7, text: "I feel anxious about the meeting, so it's going to go terribly.", distortionId: 7 },
-    { id: 8, text: "I must always perform perfectly. Making any mistake is unacceptable.", distortionId: 8 },
-    { id: 9, text: "I got negative feedback. I'm a failure.", distortionId: 9 },
-    { id: 10, text: "That small mistake ruined the entire project.", distortionId: 6 }
-];
+// Load cognitive distortions database
+async function loadCognitiveDistortions() {
+    try {
+        // Use embedded data directly
+        cognitiveDistortions = [
+            {
+                "id": 1,
+                "name": "All-or-Nothing Thinking",
+                "description": "Seeing things in black-and-white categories",
+                "examples": [
+                    {
+                        "id": 101,
+                        "text": "If I'm not perfect, I'm a complete failure.",
+                        "difficulty": 2,
+                        "context": "personal"
+                    },
+                    {
+                        "id": 102,
+                        "text": "If I don't get an A, I'm a total failure.",
+                        "difficulty": 2,
+                        "context": "academic"
+                    },
+                    {
+                        "id": 103,
+                        "text": "If I make one mistake, I'm completely incompetent.",
+                        "difficulty": 2,
+                        "context": "work"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Overgeneralization",
+                "description": "Viewing a negative event as a never-ending pattern of defeat",
+                "examples": [
+                    {
+                        "id": 201,
+                        "text": "I failed one test, so I'll fail all my classes.",
+                        "difficulty": 2,
+                        "context": "academic"
+                    },
+                    {
+                        "id": 202,
+                        "text": "One person didn't like my idea, so no one will.",
+                        "difficulty": 2,
+                        "context": "work"
+                    },
+                    {
+                        "id": 203,
+                        "text": "My partner forgot one thing, so they never remember anything.",
+                        "difficulty": 2,
+                        "context": "relationships"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Mental Filter",
+                "description": "Dwelling on negatives and ignoring positives",
+                "examples": [
+                    {
+                        "id": 301,
+                        "text": "I only remember the one negative comment in my performance review.",
+                        "difficulty": 2,
+                        "context": "work"
+                    },
+                    {
+                        "id": 302,
+                        "text": "I focus only on my mistakes and ignore my successes.",
+                        "difficulty": 2,
+                        "context": "personal"
+                    },
+                    {
+                        "id": 303,
+                        "text": "I only remember the times my partner was late, not the times they were on time.",
+                        "difficulty": 2,
+                        "context": "relationships"
+                    }
+                ]
+            }
+        ];
+        
+        // Create base situations from the examples in the database
+        baseSituations = cognitiveDistortions.flatMap(distortion => 
+            distortion.examples.map(example => ({
+                id: example.id,
+                text: example.text,
+                distortionId: distortion.id,
+                difficulty: example.difficulty,
+                context: example.context
+            }))
+        );
+    } catch (error) {
+        console.error('Error loading cognitive distortions:', error);
+        // Fallback to default values if loading fails
+        cognitiveDistortions = [
+            { id: 1, name: "All-or-Nothing Thinking", description: "Seeing things in black-and-white categories" },
+            { id: 2, name: "Overgeneralization", description: "Viewing a negative event as a never-ending pattern of defeat" },
+            { id: 3, name: "Mental Filter", description: "Dwelling on negatives and ignoring positives" }
+        ];
+        
+        baseSituations = [
+            { id: 1, text: "I failed my exam. I'll never be successful in anything.", distortionId: 2 },
+            { id: 2, text: "My friend didn't text me back. They must hate me now.", distortionId: 2 },
+            { id: 3, text: "I made a mistake at work. I'm completely incompetent.", distortionId: 1 }
+        ];
+    }
+}
 
 // Initialization
-document.addEventListener('DOMContentLoaded', initialize);
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadCognitiveDistortions();
+    initialize();
+});
 
 function initialize() {
     // Load data from localStorage if available
@@ -424,8 +512,16 @@ async function startLevel(level) {
     document.getElementById('score').textContent = score;
     
     // Generate situations and distortions for this level
-    generateLevelContent(level);
+    const { situations: levelSituations, distortions: levelDistortions } = generateLevelContent(level);
+    
+    // Update global variables
+    situations = levelSituations;
+    distortions = levelDistortions;
+    
     document.getElementById('total-pairs').textContent = situations.length;
+    
+    // Render the game items
+    renderGameItems();
     
     // Show game screen
     showScreen(gameScreen);
@@ -435,42 +531,85 @@ async function startLevel(level) {
 }
 
 function generateLevelContent(level) {
-    // Select random situations for this level
-    const numPairs = 3; // Fixed at 3 pairs per level
-    const selectedSituations = [];
-    const usedIndices = new Set();
+    // Clear previous content
+    situations = [];
+    distortions = [];
     
-    // Select unique situations
-    while (selectedSituations.length < numPairs) {
-        const index = Math.floor(Math.random() * baseSituations.length);
-        if (!usedIndices.has(index)) {
-            usedIndices.add(index);
-            selectedSituations.push({...baseSituations[index]});
+    // Calculate number of items based on level
+    const numItems = Math.min(3 + Math.floor(level / 2), 5);
+    
+    // For early levels (1-5), use all situations
+    // For higher levels, filter by difficulty
+    let eligibleSituations;
+    if (level <= 5) {
+        eligibleSituations = baseSituations;
+    } else {
+        const levelDifficulty = Math.min(Math.ceil(level / 3), 5);
+        eligibleSituations = baseSituations.filter(s => s.difficulty <= levelDifficulty);
+        
+        // If no situations match the difficulty, use all situations
+        if (eligibleSituations.length === 0) {
+            console.log('No situations found for difficulty level, using all situations');
+            eligibleSituations = baseSituations;
         }
     }
     
-    // Modify situations based on level difficulty
-    situations = selectedSituations.map(situation => {
-        let modifiedSituation = {...situation};
-        
-        if (level > 10) {
-            // Make situations more ambiguous for higher levels
-            modifiedSituation.text = makeMoreAmbiguous(situation.text, level);
-        }
-        
-        return modifiedSituation;
-    });
+    console.log('Eligible situations:', eligibleSituations.length);
+    
+    if (eligibleSituations.length === 0) {
+        console.error('No eligible situations found for level:', level);
+        return { situations: [], distortions: [] };
+    }
+    
+    // Select random situations
+    const selectedSituations = shuffleArray([...eligibleSituations]).slice(0, numItems);
     
     // Get corresponding distortions
-    distortions = situations.map(situation => {
-        return cognitiveDistortions.find(d => d.id === situation.distortionId);
+    const selectedDistortions = selectedSituations.map(s => {
+        const distortion = cognitiveDistortions.find(d => d.id === s.distortionId);
+        if (!distortion) {
+            console.error('No distortion found for situation:', s);
+            return null;
+        }
+        return distortion;
+    }).filter(d => d !== null);
+    
+    if (selectedDistortions.length === 0) {
+        console.error('No valid distortions found for selected situations');
+        return { situations: [], distortions: [] };
+    }
+    
+    // Make situations more ambiguous based on level
+    situations = selectedSituations.map(s => ({
+        ...s,
+        text: makeMoreAmbiguous(s.text, level)
+    }));
+    
+    // Shuffle distortions and add some distractors
+    const allDistortions = [...selectedDistortions];
+    const availableDistortions = cognitiveDistortions.filter(d => 
+        !selectedDistortions.some(sd => sd && sd.id === d.id)
+    );
+    
+    // Add distractors if needed and available
+    while (allDistortions.length < numItems * 2 && availableDistortions.length > 0) {
+        const randomIndex = Math.floor(Math.random() * availableDistortions.length);
+        const randomDistortion = availableDistortions[randomIndex];
+        if (!allDistortions.some(d => d && d.id === randomDistortion.id)) {
+            allDistortions.push(randomDistortion);
+            // Remove the used distortion from available ones
+            availableDistortions.splice(randomIndex, 1);
+        }
+    }
+    
+    distortions = shuffleArray(allDistortions);
+    
+    console.log('Generated content:', {
+        situationsCount: situations.length,
+        distortionsCount: distortions.length
     });
     
-    // Shuffle distortions
-    distortions = shuffleArray([...distortions]);
-    
-    // Render situations and distortions
-    renderGameItems();
+    return { situations, distortions };
 }
 
 function makeMoreAmbiguous(text, level) {
