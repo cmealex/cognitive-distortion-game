@@ -161,6 +161,12 @@ async function loadCognitiveDistortions() {
 document.addEventListener('DOMContentLoaded', async () => {
     await loadCognitiveDistortions();
     initialize();
+    
+    // Initialize language support
+    loadLanguagePreference();
+    
+    // Initialize dark mode
+    loadDarkModePreference();
 });
 
 function initialize() {
@@ -179,7 +185,7 @@ function setupEventListeners() {
     document.getElementById('login-btn').addEventListener('click', handleLogin);
     
     // Admin
-    //document.getElementById('create-user-btn').addEventListener('click', createUser);
+    document.getElementById('create-user-btn').addEventListener('click', createUser);
     document.getElementById('admin-logout-btn').addEventListener('click', logout);
     
     // Profile
@@ -241,34 +247,92 @@ function showScreen(screen) {
     const screens = [loginScreen, adminScreen, profileScreen, levelScreen, gameScreen, levelCompleteScreen];
     screens.forEach(s => s.classList.add('hidden'));
     screen.classList.remove('hidden');
+    
+    // Update text for current language whenever screen changes
+    updatePageText();
+    
+    // Update button text based on dark mode state
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (darkModeToggle) {
+        darkModeToggle.innerHTML = darkMode ? 
+            '☀️ <span data-lang="lightModeToggle">' + getText('lightModeToggle') + '</span>' : 
+            '🌙 <span data-lang="darkModeToggle">' + getText('darkModeToggle') + '</span>';
+    }
 }
 
 // Authentication
-function handleLogin() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+function handleLogin(event) {
+    if (event) {
+        event.preventDefault();
+    }
+    
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
     const errorElement = document.getElementById('login-error');
     
-    const user = users.find(u => u.username === username && u.password === password);
-    
-    if (!user) {
-        errorElement.textContent = 'Invalid username or password';
+    if (!username || !password) {
+        errorElement.textContent = getText('pleaseEnterBoth');
         return;
     }
     
-    currentUser = user;
+    // Check if user exists and password is correct
+    const user = users.find(u => u.username === username && u.password === password);
     
-    // Update the logged-in username display
-    document.getElementById('logged-in-username').textContent = user.profile?.nickname || user.username;
-    document.getElementById('user-info').style.display = 'block';
+    if (!user) {
+        errorElement.textContent = getText('invalidCredentials');
+        return;
+    }
     
+    // Store the username as a string in currentUser
+    currentUser = username;
+    console.log('Logged in as:', currentUser);
+    
+    // Update the logged-in username element
+    const usernameElement = document.getElementById('logged-in-username');
+    if (usernameElement) {
+        usernameElement.textContent = username;
+    } else {
+        // Create the element if it doesn't exist
+        const newElement = document.createElement('span');
+        newElement.id = 'logged-in-username';
+        newElement.style.display = 'none';
+        newElement.textContent = username;
+        document.body.appendChild(newElement);
+        console.log('Created logged-in-username element');
+    }
+    
+    // Set current profile if user has one
+    if (user.profile) {
+        currentProfile = user.profile;
+    } else {
+        // Set default profile values
+        currentProfile = { 
+            nickname: username,
+            avatar: '1'
+        };
+    }
+    
+    // Update nickname display
+    const profileNickname = document.getElementById('profile-nickname');
+    if (profileNickname) {
+        profileNickname.textContent = currentProfile.nickname || username;
+    }
+    
+    // Make user info visible
+    const userInfo = document.getElementById('user-info');
+    if (userInfo) {
+        userInfo.style.display = 'block';
+    }
+    
+    // Show appropriate screen based on user type
     if (user.isAdmin) {
         showAdminScreen();
     } else {
         if (user.profile) {
-            currentProfile = user.profile;
+            // User already has a profile, show level screen
             showLevelScreen();
         } else {
+            // No profile, show profile setup screen
             showScreen(profileScreen);
         }
     }
@@ -289,40 +353,75 @@ function showAdminScreen() {
     showScreen(adminScreen);
 }
 
-function createUser() {
+function createUser(event) {
+    if (event) {
+        event.preventDefault();
+    }
+    
     const usernameInput = document.getElementById('new-username');
     const passwordInput = document.getElementById('new-password');
     
-    console.log('Username input element:', usernameInput);
-    console.log('Password input element:', passwordInput);
+    if (!usernameInput || !passwordInput) {
+        console.error('New user form elements not found');
+        return;
+    }
     
-    const username = usernameInput ? usernameInput.value : 'not found';
-    const password = passwordInput ? passwordInput.value : 'not found';
-    
-    console.log('Username value:', username);
-    console.log('Password value:', password);
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
     
     if (!username || !password) {
-        alert('Please enter both username and password');
+        alert(getText('pleaseEnterBoth'));
         return;
     }
     
     if (users.some(u => u.username === username)) {
-        alert('Username already exists');
+        alert(getText('userExists'));
         return;
     }
     
-    users.push({
+    // Add new user to users array
+    const newUser = {
         username,
         password,
-        isAdmin: false
-    });
+        isAdmin: false,
+        profile: {
+            nickname: username,
+            avatar: '1'
+        }
+    };
     
+    users.push(newUser);
+    console.log('Added new user:', username);
+    
+    // Save data to localStorage as backup
     saveData();
+    
+    // Try to save to IndexedDB if available
+    try {
+        gameDB.addUser(username, password)
+            .then(() => {
+                // Save a default profile for the new user
+                return gameDB.saveProfile(username, {
+                    nickname: username,
+                    avatar: '1'
+                });
+            })
+            .then(() => {
+                console.log('User and profile saved to database');
+            })
+            .catch(error => {
+                console.error('Error saving user to database:', error);
+            });
+    } catch (error) {
+        console.error('Error creating user in database:', error);
+    }
+    
+    // Update admin view
     renderUserCredentials();
     
-    document.getElementById('new-username').value = '';
-    document.getElementById('new-password').value = '';
+    // Clear form fields
+    usernameInput.value = '';
+    passwordInput.value = '';
 }
 
 function renderUserCredentials() {
@@ -355,17 +454,21 @@ function selectAvatar(event) {
     currentProfile.avatar = clickedAvatar.getAttribute('data-avatar');
 }
 
-function saveProfile() {
+function saveProfile(event) {
+    if (event) {
+        event.preventDefault();
+    }
+    
     const nickname = document.getElementById('nickname').value;
     const selectedAvatar = document.querySelector('.avatar.selected');
     
     if (!nickname) {
-        alert('Please enter a nickname');
+        alert(getText('pleaseEnterNickname'));
         return;
     }
     
     if (!selectedAvatar) {
-        alert('Please select an avatar');
+        alert(getText('pleaseSelectAvatar'));
         return;
     }
     
@@ -373,7 +476,7 @@ function saveProfile() {
     currentProfile.avatar = selectedAvatar.getAttribute('data-avatar');
     
     // Save profile to user
-    const userIndex = users.findIndex(u => u.username === currentUser.username);
+    const userIndex = users.findIndex(u => u.username === currentUser);
     users[userIndex].profile = currentProfile;
     
     saveData();
@@ -382,10 +485,23 @@ function saveProfile() {
 
 // Level Management
 function showLevelScreen() {
-    updateProfileDisplay();
-    renderLevelGrid();
-    renderLeaderboard();
+    console.log('Showing level screen');
+    
+    // Display the level screen
     showScreen(levelScreen);
+    
+    try {
+        // Update profile display if we have a profile
+        if (currentProfile && currentProfile.nickname) {
+            updateProfileDisplay();
+        }
+        
+        // Always render level grid and leaderboard
+        renderLevelGrid();
+        renderLeaderboard();
+    } catch (error) {
+        console.error('Error in showLevelScreen:', error);
+    }
 }
 
 function updateProfileDisplay() {
@@ -408,51 +524,138 @@ function updateProfileDisplay() {
 async function loadUserProgress(username) {
     try {
         console.log('Loading progress for user:', username);
-        const progress = await gameDB.getProgress(username);
-        console.log('Retrieved progress:', progress);
         
-        if (progress && progress.length > 0) {
-            // Get the highest level completed
-            const highestLevel = Math.max(...progress.map(p => p.level));
-            console.log('Highest level completed:', highestLevel);
-            unlockedLevels = Math.max(highestLevel + 1, 1); // Unlock next level
-        } else {
-            console.log('No progress found, starting at level 1');
-            // New user - start with only level 1 unlocked
-            unlockedLevels = 1;
+        if (!username) {
+            console.error('No username provided for loadUserProgress');
+            return;
         }
-        console.log('Unlocked levels set to:', unlockedLevels);
+        
+        // Get user's progress from database or fallback to localStorage
+        let progress = [];
+        
+        // Try to get progress from IndexedDB
+        try {
+            progress = await gameDB.getProgress(username);
+            console.log('Progress from database:', progress);
+        } catch (dbError) {
+            console.warn('Error getting progress from database:', dbError);
+            // Fallback to localStorage
+            console.log('Using localStorage fallback for progress');
+            const storedLevels = localStorage.getItem('unlockedLevels');
+            if (storedLevels) {
+                unlockedLevels = parseInt(storedLevels);
+                return;
+            }
+        }
+        
+        // If no progress found, or progress is empty, keep default level 1
+        if (!progress || progress.length === 0) {
+            console.log('No progress found, keeping level 1 unlocked');
+            return;
+        }
+        
+        // Find the highest completed level
+        const completedLevels = progress.filter(p => p.score > 0);
+        if (completedLevels.length === 0) {
+            console.log('No completed levels found, keeping level 1 unlocked');
+            return;
+        }
+        
+        const maxCompletedLevel = Math.max(...completedLevels.map(p => p.level));
+        console.log('Max completed level:', maxCompletedLevel);
+        
+        // Unlock the next level (if not already at max level)
+        unlockedLevels = Math.min(maxCompletedLevel + 1, MAX_LEVELS);
+        console.log('Set unlockedLevels to:', unlockedLevels);
     } catch (error) {
-        console.error('Error loading user progress:', error);
-        // On error, default to level 1
-        unlockedLevels = 1;
+        console.error('Error loading user progress (general):', error);
+        // Default to level 1 on error (already set earlier)
     }
 }
 
 // Update level grid with database data
 async function renderLevelGrid() {
     const levelGrid = document.getElementById('level-grid');
+    if (!levelGrid) {
+        console.error('Level grid element not found');
+        return;
+    }
+    
     levelGrid.innerHTML = '';
     
-    const username = document.getElementById('logged-in-username').textContent;
-    await loadUserProgress(username);
+    console.log('Rendering level grid - begin');
     
-    console.log('Rendering level grid with unlocked levels:', unlockedLevels);
+    // Get username from DOM or currentUser
+    let username = '';
+    const usernameElement = document.getElementById('logged-in-username');
     
-    for (let i = 1; i <= MAX_LEVELS; i++) {
-        const levelItem = document.createElement('div');
-        levelItem.className = `level-item ${i <= unlockedLevels ? 'unlocked' : 'locked'}`;
-        levelItem.textContent = `Level ${i}`;
+    if (usernameElement && usernameElement.textContent) {
+        username = usernameElement.textContent;
+        console.log('Using username from DOM element:', username);
+    } else if (currentUser) {
+        // Handle both string and object formats of currentUser
+        if (typeof currentUser === 'string') {
+            username = currentUser;
+        } else if (typeof currentUser === 'object' && currentUser.username) {
+            username = currentUser.username;
+        }
+        console.log('Using username from currentUser:', username);
         
-        if (i <= unlockedLevels) {
-            levelItem.addEventListener('click', () => startLevel(i));
+        // Create the username element if it doesn't exist
+        if (!usernameElement) {
+            const newElement = document.createElement('span');
+            newElement.id = 'logged-in-username';
+            newElement.style.display = 'none';
+            newElement.textContent = username;
+            document.body.appendChild(newElement);
+            console.log('Created logged-in-username element with:', username);
+        } else if (!usernameElement.textContent) {
+            usernameElement.textContent = username;
+            console.log('Updated logged-in-username element with:', username);
+        }
+    }
+    
+    // Ensure we have at least level 1 unlocked
+    unlockedLevels = 1;
+    
+    try {
+        // Only load user progress if we have a username
+        if (username) {
+            await loadUserProgress(username);
         } else {
-            levelItem.style.cursor = 'not-allowed';
-            levelItem.title = 'Complete previous levels to unlock';
+            console.warn('No username available, defaulting to level 1 only');
         }
         
+        console.log('Creating level grid with unlocked levels:', unlockedLevels);
+        
+        // Create level buttons for all levels
+        for (let i = 1; i <= MAX_LEVELS; i++) {
+            const levelItem = document.createElement('div');
+            levelItem.className = `level-item ${i <= unlockedLevels ? 'unlocked' : 'locked'}`;
+            levelItem.textContent = `Level ${i}`;
+            
+            if (i <= unlockedLevels) {
+                levelItem.addEventListener('click', () => startLevel(i));
+            } else {
+                levelItem.style.cursor = 'not-allowed';
+                levelItem.title = 'Complete previous levels to unlock';
+            }
+            
+            levelGrid.appendChild(levelItem);
+        }
+    } catch (error) {
+        console.error('Error rendering level grid:', error);
+        
+        // Fallback: Always show at least level 1
+        console.log('Using fallback to display level 1');
+        const levelItem = document.createElement('div');
+        levelItem.className = 'level-item unlocked';
+        levelItem.textContent = 'Level 1';
+        levelItem.addEventListener('click', () => startLevel(1));
         levelGrid.appendChild(levelItem);
     }
+    
+    console.log('Rendering level grid - complete');
 }
 
 // Update leaderboard with database data
@@ -504,30 +707,48 @@ async function renderLeaderboard() {
 // Game Functions
 async function startLevel(level) {
     console.log('Starting level:', level);
-    currentLevel = level;
-    document.getElementById('current-level').textContent = level;
     
-    // Reset game state
-    score = 0;
-    document.getElementById('score').textContent = score;
-    
-    // Generate situations and distortions for this level
-    const { situations: levelSituations, distortions: levelDistortions } = generateLevelContent(level);
-    
-    // Update global variables
-    situations = levelSituations;
-    distortions = levelDistortions;
-    
-    document.getElementById('total-pairs').textContent = situations.length;
-    
-    // Render the game items
-    renderGameItems();
-    
-    // Show game screen
-    showScreen(gameScreen);
-    
-    // Start timer
-    startTimer();
+    try {
+        // Set current level
+        currentLevel = level;
+        const currentLevelElement = document.getElementById('current-level');
+        if (currentLevelElement) {
+            currentLevelElement.textContent = level;
+        }
+        
+        // Reset game state
+        score = 0;
+        const scoreElement = document.getElementById('score');
+        if (scoreElement) {
+            scoreElement.textContent = '0';
+        }
+        
+        // Generate situations and distortions for this level
+        const { situations: levelSituations, distortions: levelDistortions } = generateLevelContent(level);
+        
+        // Update global variables
+        situations = levelSituations;
+        distortions = levelDistortions;
+        
+        // Update total pairs display
+        const totalPairsElement = document.getElementById('total-pairs');
+        if (totalPairsElement) {
+            totalPairsElement.textContent = situations.length;
+        }
+        
+        // Render the game items
+        renderGameItems();
+        
+        // Show game screen
+        showScreen(gameScreen);
+        
+        // Start timer
+        startTimer();
+    } catch (error) {
+        console.error('Error starting level:', error);
+        alert('There was an error starting the level. Please try again.');
+        showLevelScreen();
+    }
 }
 
 function generateLevelContent(level) {
@@ -535,8 +756,20 @@ function generateLevelContent(level) {
     situations = [];
     distortions = [];
     
-    // Calculate number of items based on level
-    const numItems = Math.min(3 + Math.floor(level / 2), 5);
+    // Calculate number of items based on level progression
+    // Levels 1-10: 3 items
+    // Levels 11-15: 4 items
+    // Levels 16-20: 5 items
+    let numItems;
+    if (level <= 10) {
+        numItems = 3;
+    } else if (level <= 15) {
+        numItems = 4;
+    } else {
+        numItems = 5;
+    }
+    
+    console.log('Number of items for level', level, ':', numItems);
     
     // For early levels (1-5), use all situations
     // For higher levels, filter by difficulty
@@ -561,8 +794,18 @@ function generateLevelContent(level) {
         return { situations: [], distortions: [] };
     }
     
+    // Ensure we have enough situations for the level, even if we need to reuse some
+    let availableSituations = [...eligibleSituations];
+    if (availableSituations.length < numItems) {
+        console.log('Not enough unique situations, reusing some');
+        // Add situations repeatedly until we have enough
+        while (availableSituations.length < numItems) {
+            availableSituations = [...availableSituations, ...eligibleSituations];
+        }
+    }
+    
     // Select random situations
-    const selectedSituations = shuffleArray([...eligibleSituations]).slice(0, numItems);
+    const selectedSituations = shuffleArray(availableSituations).slice(0, numItems);
     
     // Get corresponding distortions
     const selectedDistortions = selectedSituations.map(s => {
@@ -585,28 +828,73 @@ function generateLevelContent(level) {
         text: makeMoreAmbiguous(s.text, level)
     }));
     
-    // Shuffle distortions and add some distractors
-    const allDistortions = [...selectedDistortions];
-    const availableDistortions = cognitiveDistortions.filter(d => 
-        !selectedDistortions.some(sd => sd && sd.id === d.id)
-    );
+    // For levels 1-10, we want exactly 3 distortions (matching the 3 situations)
+    // For higher levels, show more options
+    let totalDistortionsToShow;
+    if (level <= 10) {
+        // Just show the exact matches for early levels (3 vs 3)
+        totalDistortionsToShow = numItems;
+    } else {
+        // For higher levels, show double the number of situations
+        // This creates a 4 vs 8 or 5 vs 10 setup, making it harder
+        totalDistortionsToShow = numItems * 2;
+    }
     
-    // Add distractors if needed and available
-    while (allDistortions.length < numItems * 2 && availableDistortions.length > 0) {
-        const randomIndex = Math.floor(Math.random() * availableDistortions.length);
-        const randomDistortion = availableDistortions[randomIndex];
-        if (!allDistortions.some(d => d && d.id === randomDistortion.id)) {
-            allDistortions.push(randomDistortion);
-            // Remove the used distortion from available ones
-            availableDistortions.splice(randomIndex, 1);
+    // Start with the correct matching distortions
+    let allDistortions = [...selectedDistortions];
+    
+    // If we need more distortions (for higher levels), add distractors
+    if (totalDistortionsToShow > selectedDistortions.length) {
+        // Get distortions that are not used in the selected situations (for distractors)
+        const unusedDistortions = cognitiveDistortions.filter(d => 
+            !selectedDistortions.some(sd => sd && sd.id === d.id)
+        );
+        
+        // If we have fewer unique distortions than we need, allow duplicates
+        if (selectedDistortions.length + unusedDistortions.length < totalDistortionsToShow) {
+            console.log('Not enough unique distortions, reusing some');
+            
+            // Add all unused distortions first
+            allDistortions = [...allDistortions, ...unusedDistortions];
+            
+            // Then add duplicates of all distortions until we have enough
+            const allAvailableDistortions = [...cognitiveDistortions];
+            while (allDistortions.length < totalDistortionsToShow && allAvailableDistortions.length > 0) {
+                // Shuffle to randomize which distortions get duplicated
+                const shuffledDistortions = shuffleArray([...allAvailableDistortions]);
+                for (const distortion of shuffledDistortions) {
+                    if (allDistortions.length < totalDistortionsToShow) {
+                        allDistortions.push(distortion);
+                    } else {
+                        break;
+                    }
+                }
+            }
+        } else {
+            // Add distractors if needed and available
+            while (allDistortions.length < totalDistortionsToShow && unusedDistortions.length > 0) {
+                const randomIndex = Math.floor(Math.random() * unusedDistortions.length);
+                const randomDistortion = unusedDistortions[randomIndex];
+                allDistortions.push(randomDistortion);
+                // Remove the used distortion from available ones
+                unusedDistortions.splice(randomIndex, 1);
+            }
         }
     }
     
+    // Ensure we have exactly the right number of distortions
+    if (allDistortions.length > totalDistortionsToShow) {
+        allDistortions = allDistortions.slice(0, totalDistortionsToShow);
+    }
+    
+    // Shuffle distortions
     distortions = shuffleArray(allDistortions);
     
     console.log('Generated content:', {
         situationsCount: situations.length,
-        distortionsCount: distortions.length
+        distortionsCount: distortions.length,
+        expectedItems: numItems,
+        level: level
     });
     
     return { situations, distortions };
@@ -656,7 +944,7 @@ function renderGameItems() {
     distortions.forEach((distortion, index) => {
         const distortionEl = document.createElement('div');
         distortionEl.className = 'distortion-item';
-        distortionEl.innerHTML = `<strong>${distortion.name}</strong>: ${distortion.description}`;
+        distortionEl.innerHTML = `<strong>${distortion.name}:</strong> ${distortion.description}`;
         distortionEl.dataset.id = distortion.id;
         distortionEl.dataset.index = index;
         
@@ -854,4 +1142,6 @@ function shuffleArray(array) {
     }
     return array;
 }
+
+
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#3a7bd5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title data-lang="aboutTitle">Despre Identificatorul de Distorsiuni Cognitive</title>
+    <title>About - Cognitive Distortion Matcher</title>
     <link rel="stylesheet" href="therapy-game-css.css">
     <link rel="manifest" href="manifest.json">
     <script src="language.js" defer></script>
@@ -20,10 +20,10 @@
         }
     </style>
     <script>
-        // Set language to Romanian immediately
+        // Force English language for this page
         window.onload = function() {
             if (typeof setLanguage === 'function') {
-                setLanguage('ro');
+                setLanguage('en');
             }
         };
     </script>
@@ -33,60 +33,57 @@
         <div class="screen">
             <div class="utility-bar">
                 <div class="utility-buttons">
-                    <button id="language-toggle" class="utility-btn" data-lang="languageToggle">Schimbă în Engleză</button>
-                    <button id="dark-mode-toggle" class="utility-btn"><span data-lang="darkModeToggle">Mod Întunecat</span></button>
+                    <button id="language-toggle" class="utility-btn" data-lang="languageToggle">Switch to Romanian</button>
+                    <button id="dark-mode-toggle" class="utility-btn"><span data-lang="darkModeToggle">Dark Mode</span></button>
                 </div>
                 <div class="links">
-                    <a href="index.html" class="link" data-lang="back">Înapoi</a>
+                    <a href="index.html" class="link" data-lang="back">Back</a>
                 </div>
             </div>
             
-            <h1 data-lang="aboutTitle">Despre Identificatorul de Distorsiuni Cognitive</h1>
+            <h1>About Cognitive Distortion Matcher</h1>
             
             <div class="about-container">
                 <div class="about-content">
-                    <p data-lang="aboutContent">
-                        Acest joc vă ajută să învățați să identificați distorsiunile cognitive comune - modelele de gândire negative care pot contribui la anxietate și depresie. Prin potrivirea situațiilor cu tipul de distorsiune cognitivă adecvat, puteți deveni mai conștienți de aceste modele în propria gândire.
+                    <p>
+                        This game helps you learn to identify common cognitive distortions - the negative thought patterns that can contribute to anxiety and depression. By matching situations with the appropriate cognitive distortion type, you can become more aware of these patterns in your own thinking.
                     </p>
                     
                     <p>
-                        Distorsiunile cognitive sunt tipare de gândire care sunt adesea inexacte și orientate negativ. Acestea pot agrava dificultățile emoționale și pot duce la decizii proaste. Învățând să identificați aceste tipare, puteți începe să le contestați și să le reformulați, ducând la o bunăstare mentală îmbunătățită.
+                        Cognitive distortions are patterns of thinking that are often inaccurate and negatively biased. They can worsen emotional difficulties and lead to poor decision-making. By learning to identify these patterns, you can begin to challenge and reframe these thoughts, leading to improved mental well-being.
                     </p>
                     
                     <p>
-                        Acest joc vă provoacă să potriviți situații din viața reală cu tipul de distorsiune cognitivă pe care o reprezintă. Pe măsură ce avansați prin niveluri, potrivirile devin mai provocatoare, ajutându-vă să dezvoltați o înțelegere mai profundă a acestor tipare de gândire.
+                        This game challenges you to match real-life situations with the type of cognitive distortion they represent. As you progress through the levels, the matches become more challenging, helping you develop a deeper understanding of these thought patterns.
                     </p>
                     
                     <p>
-                        Exersați regulat pentru a vă îmbunătăți abilitățile de identificare a acestor tipare în viața de zi cu zi, ceea ce este primul pas în abordarea lor.
+                        Practice regularly to improve your skills at identifying these patterns in daily life, which is the first step toward addressing them.
                     </p>
                 </div>
                 
                 <div class="contact-info">
-                    <p data-lang="developerInfo">Dezvoltat de Christian Mayer</p>
-                    <p data-lang="contactInfo">Contact: contact@christianmayer.info</p>
+                    <p>Developed by Christian Mayer</p>
+                    <p>Contact: contact@christianmayer.info</p>
                 </div>
             </div>
         </div>
     </div>
     
     <footer>
-        <p>&copy; 2023 Christian Mayer. Toate drepturile rezervate.</p>
+        <p>&copy; 2023 Christian Mayer. All rights reserved.</p>
     </footer>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Set language to Romanian
-            currentLanguage = 'ro';
+            // Ensure English language is used for this page
+            currentLanguage = 'en';
             
-            // Update text for current language
-            updatePageText();
-            
-            // Setup language toggle event listener
+            // Setup language toggle event listener to redirect to despre.html
             const languageToggle = document.getElementById('language-toggle');
             if (languageToggle) {
                 languageToggle.addEventListener('click', () => {
-                    window.location.href = 'about.html';
+                    window.location.href = 'despre.html';
                 });
             }
             
@@ -105,4 +102,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

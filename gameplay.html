@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#3a7bd5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title data-lang="gameplayTitle">How to Play</title>
+    <link rel="stylesheet" href="therapy-game-css.css">
+    <link rel="manifest" href="manifest.json">
+    <script src="language.js" defer></script>
+    <script src="dark-mode.js" defer></script>
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="utility-bar">
+                <div class="utility-buttons">
+                    <button id="language-toggle" class="utility-btn" data-lang="languageToggle">Switch to Romanian</button>
+                    <button id="dark-mode-toggle" class="utility-btn"><span data-lang="darkModeToggle">Dark Mode</span></button>
+                </div>
+                <div class="links">
+                    <a href="index.html" class="link" data-lang="back">Back</a>
+                </div>
+            </div>
+            
+            <h1 data-lang="gameplayTitle">How to Play</h1>
+            
+            <div class="gameplay-container">
+                <div class="gameplay-content">
+                    <h2 data-lang="gameObjective">Game Objective</h2>
+                    <p data-lang="gameObjectiveText">
+                        The goal of Cognitive Distortion Matcher is to correctly match situations with the cognitive distortion type they represent.
+                    </p>
+                    
+                    <h2 data-lang="gameRules">Game Rules</h2>
+                    <ol class="gameplay-steps">
+                        <li data-lang="gameRule1">Each level contains a set of situations and cognitive distortions.</li>
+                        <li data-lang="gameRule2">Click on a situation on the left panel to select it.</li>
+                        <li data-lang="gameRule3">Then click on the matching cognitive distortion on the right panel.</li>
+                        <li data-lang="gameRule4">If correct, both will be marked with a checkmark (✓) and fade slightly.</li>
+                        <li data-lang="gameRule5">If incorrect, the distortion will flash red with an X mark (✗).</li>
+                        <li data-lang="gameRule6">Complete all matches before the timer runs out.</li>
+                        <li data-lang="gameRule7">Successfully completing a level unlocks the next level.</li>
+                    </ol>
+                    
+                    <h2 data-lang="levelProgression">Level Progression</h2>
+                    <p data-lang="levelProgressionIntro">
+                        The game features 20 levels with increasing difficulty:
+                    </p>
+                    <ul class="gameplay-steps">
+                        <li data-lang="levelProgression1">Levels 1-10: 3 matches per level</li>
+                        <li data-lang="levelProgression2">Levels 11-15: 4 matches per level</li>
+                        <li data-lang="levelProgression3">Levels 16-20: 5 matches per level</li>
+                        <li data-lang="levelProgression4">Higher levels feature more ambiguous situations and have tighter time limits.</li>
+                    </ul>
+                    
+                    <h2 data-lang="tips">Tips</h2>
+                    <ul class="gameplay-steps">
+                        <li data-lang="tip1">Read each description carefully to understand the core characteristic of each distortion type.</li>
+                        <li data-lang="tip2">Look for key phrases in the situations that hint at specific distortion types.</li>
+                        <li data-lang="tip3">Practice identifying these patterns in your own thoughts during daily life.</li>
+                        <li data-lang="tip4">Focus on speed at higher levels to beat the timer.</li>
+                    </ul>
+                    
+                    <div data-lang="gameplayContent">
+                        1. Read each situation on the left side.<br>
+                        2. Click on a situation to select it.<br>
+                        3. Match it with the appropriate cognitive distortion on the right side.<br>
+                        4. Complete all matches before time runs out.<br>
+                        5. Try to progress through all levels to master cognitive distortion identification!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Christian Mayer. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update text for current language
+            updatePageText();
+            
+            // Setup language toggle event listener
+            const languageToggle = document.getElementById('language-toggle');
+            if (languageToggle) {
+                languageToggle.addEventListener('click', () => {
+                    setLanguage(currentLanguage === 'en' ? 'ro' : 'en');
+                });
+            }
+            
+            // Setup dark mode toggle event listener
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener('click', () => {
+                    toggleDarkMode();
+                });
+                
+                // Update dark mode toggle text based on current state
+                if (darkMode) {
+                    darkModeToggle.innerHTML = '☀️ <span data-lang="lightModeToggle">' + getText('lightModeToggle') + '</span>';
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
